@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Salesforce Associate - Full Exam Simulator</title>
+    <style>
+        :root { 
+            --sf-blue: #0176d3; 
+            --sf-dark: #032d60; 
+            --sf-bg: #f3f3f3; 
+            --sf-green: #2e844a; 
+            --sf-red: #ea001e; 
+        }
+
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background: var(--sf-bg); 
+            margin: 0; 
+            padding: 10px; /* Reduced for mobile */
+            color: #333; 
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 20px; /* Reduced from 40px */
+            border-radius: 12px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            border-top: 8px solid var(--sf-blue); 
+            box-sizing: border-box;
+        }
+
+        .header { 
+            display: flex; 
+            flex-direction: column; /* Stack on mobile */
+            gap: 5px;
+            border-bottom: 1px solid #ddd; 
+            padding-bottom: 15px; 
+            margin-bottom: 20px; 
+        }
+
+        .q-text { 
+            font-size: 1.15rem; /* Slightly smaller for mobile */
+            font-weight: 600; 
+            color: var(--sf-dark); 
+            line-height: 1.4; 
+            margin-bottom: 20px; 
+        }
+
+        .opt-btn { 
+            display: block; 
+            width: 100%; 
+            text-align: left; 
+            padding: 16px 20px; /* Larger hit area for thumbs */
+            margin: 12px 0; 
+            border: 1.5px solid #ccc; 
+            border-radius: 8px; 
+            background: #fff; 
+            cursor: pointer; 
+            font-size: 1rem; 
+            transition: background 0.2s, border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        /* Hover only applies to devices that support it */
+        @media (hover: hover) {
+            .opt-btn:hover:not(:disabled) { 
+                border-color: var(--sf-blue); 
+                background: #f0f8ff; 
+            }
+        }
+
+        /* Active state for better mobile feedback */
+        .opt-btn:active:not(:disabled) {
+            background: #e0f0ff;
+        }
+
+        .correct { background: var(--sf-green) !important; color: white; border-color: var(--sf-green); }
+        .wrong { background: var(--sf-red) !important; color: white; border-color: var(--sf-red); }
+
+        .footer { 
+            margin-top: 25px; 
+            display: flex; 
+            justify-content: center; /* Center button on mobile */
+        }
+
+        .next-btn { 
+            background: var(--sf-blue); 
+            color: white; 
+            border: none; 
+            padding: 15px 40px; 
+            width: 100%; /* Full width on mobile */
+            max-width: 300px;
+            border-radius: 30px; /* Rounded pill shape */
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 1rem;
+            display: none; 
+        }
+
+        .progress-bar { width: 100%; height: 10px; background: #eee; border-radius: 5px; margin-bottom: 20px; overflow: hidden; }
+        .fill { height: 100%; background: var(--sf-blue); transition: 0.4s; }
+
+        #results { display: none; text-align: center; padding: 20px 0; }
+        .stat-box { font-size: 2.5rem; color: var(--sf-blue); margin: 15px 0; font-weight: bold; }
+
+        /* Desktop Adjustments */
+        @media (min-width: 600px) {
+            body { padding: 40px 20px; }
+            .container { padding: 40px; }
+            .header { flex-direction: row; justify-content: space-between; }
+            .q-text { font-size: 1.3rem; }
+            .footer { justify-content: flex-end; }
+            .next-btn { width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="quiz-wrapper">
+    <div id="quiz-content">
+        <div class="header">
+            <span style="font-weight: bold; color: var(--sf-blue);">Associate Practice Exam</span>
+            <span id="q-counter" style="font-size: 0.9rem; color: #666;">Question 1 / 10</span>
+        </div>
+        <div class="progress-bar"><div class="fill" id="progress-fill" style="width: 10%;"></div></div>
+        <div class="q-text" id="question-display">Loading question...</div>
+        <div id="options-display"></div>
+        <div class="footer">
+            <button class="next-btn" id="next-btn" onclick="handleNext()">Next Question</button>
+        </div>
+    </div>
+
+    <div id="results">
+        <h1>Exam Complete!</h1>
+        <div class="stat-box" id="final-score">8/10</div>
+        <p id="feedback-text">Great job! You're ready for the exam.</p>
+        <button class="opt-btn" style="text-align: center; background: var(--sf-blue); color: white; border: none;" onclick="location.reload()">Restart Exam</button>
+    </div>
+</div>
+
+</body>
+</html>
+<script>
+    // Full extracted data from PDF sources
+    const fullBank = 
+        [
+  {
+    "q": "A marketing manager wants to make the Reason Lost field required on the opportunity when his stage is changed to Closed Lost. What should the salesforce associate do to enforce this requirement?",
+    "o": [
+      "Create a validation rule on the Opportunity object",
+      "Make the field universally required",
+      "Make the field required on the page layout"
+    ],
+    "a": "Create a validation rule on the Opportunity object"
+  },
+  {
+    "q": "A Salesforce associate is preparing for a sales call and needs to review a specific report. What is the most efficient way to navigate there?",
+    "o": [
+      "Use the search bar in All Reports",
+      "Use the Global search bar",
+      "Use the search bar in All Folders"
+    ],
+    "a": "Use the Global search bar"
+  },
+  {
+    "q": "A Salesforce associate is asked to review all the objects within their company's instance. They also need to identify which are custom objects. Where should the associate go to see this information?",
+    "o": [
+      "App Launcher",
+      "Object Manager",
+      "Global Search"
+    ],
+    "a": "Object Manager"
+  },
+  {
+    "q": "What is the role of each of these companies? Get Cloudy Consulting (GCC) is transitioning to Salesforce, United Clouds is assisting with the transition, and GCC plans to add an app from Connected Mail.",
+    "o": [
+      "Get Cloudy Consulting - Customer, Connected Mail - Independent Software Vendor (ISV), United Clouds - Partner",
+      "Get Cloudy Consulting - Customer, Connected Mail - Consultant, United Clouds - Partner",
+      "Get Cloudy Consulting - Customer, Connected Mail - Product, United Clouds - Partner Independent Software Vendor (ISV)"
+    ],
+    "a": "Get Cloudy Consulting - Customer, Connected Mail - Independent Software Vendor (ISV), United Clouds - Partner"
+  },
+  {
+    "q": "Get Cloudy Consulting wants to implement AI Agents to assist with customer service. Where can Agents be deployed?",
+    "o": [
+      "Queues",
+      "Chatter",
+      "Slack"
+    ],
+    "a": "Slack"
+  },
+  {
+    "q": "Get Cloudy Consulting (GCC) wants to meet the needs of digitally savvy customers by offering support via web chat as well as SMS, Facebook Messenger, and WhatsApp. Which Salesforce product should meet this need?",
+    "o": [
+      "Service Cloud",
+      "Experience Cloud",
+      "Sales Cloud"
+    ],
+    "a": "Service Cloud"
+  },
+  {
+    "q": "Which app should the associate recommend for the user to view multiple records and their related records on one screen instead of multiple browser tabs?",
+    "o": [
+      "Salesforce Lightning Page",
+      "Salesforce Lightning Console",
+      "Salesforce Dashboard"
+    ],
+    "a": "Salesforce Lightning Console"
+  },
+  {
+    "q": "The Health Department wants to gain more insight into its patient data than what Salesforce Dashboards can provide. Which Salesforce product should the department use?",
+    "o": [
+      "Experience Cloud",
+      "CRM Analytics",
+      "Health Cloud"
+    ],
+    "a": "CRM Analytics"
+  },
+  {
+    "q": "A sales manager at Get Cloudy Consulting wants a report that shows their top-selling product families by quantity.",
+    "o": [
+      "Group by opportunity stage > Filter by product family > Sum the total number sold",
+      "Group by product family > Filter to show only Closed Won opportunities > Sum the total number sold",
+      "Group by active products > Filter to show opportunities this year > Sum the quantity"
+    ],
+    "a": "Group by product family > Filter to show only Closed Won opportunities > Sum the total number sold"
+  },
+  {
+    "q": "The associate wants to change their work hours information in the Salesforce org to reflect their new time zone. Which method is easiest to change these settings?",
+    "o": [
+      "Go to Setting -> Personal Information -> My Work Information",
+      "Submit a case with Salesforce support",
+      "Go to setup -> Company Information -> Default Time Zone"
+    ],
+    "a": "Go to Setting -> Personal Information -> My Work Information"
+  },
+  {
+    "q": "What is the maximum number of rows a report will display?",
+    "o": [
+      "5,000",
+      "3,000",
+      "2,000"
+    ],
+    "a": "3,000"
+  },
+  {
+    "q": "A Salesforce associate has been asked to identify all contacts that have had interactions with their company in the last year. What should the associate do to identify these contacts?",
+    "o": [
+      "Look at the contact's Last Modified Date.",
+      "Look at the active field.",
+      "Look at the last related activity date."
+    ],
+    "a": "Look at the last related activity date."
+  },
+  {
+    "q": "Which resource should they use to post a question that anyone around the globe who is familiar with Salesforce can answer?",
+    "o": [
+      "Trailblazer Community",
+      "Trailhead Academy",
+      "Salesforce Help"
+    ],
+    "a": "Trailblazer Community"
+  },
+  {
+    "q": "Where can a Salesforce associate find information that provides a view of interactions with a contact?",
+    "o": [
+      "Activity Timeline",
+      "Details Tab",
+      "Contact History"
+    ],
+    "a": "Activity Timeline"
+  },
+  {
+    "q": "Into which types of files can the report be exported?",
+    "o": [
+      "Word (.doc or .docx) or comma-separated values (.csv)",
+      "Excel (.xlsx or .xls) file or comma-separated values (.csv)",
+      "PDF (.pdf) or Excel (.xlsx or .xls)"
+    ],
+    "a": "Excel (.xlsx or .xls) file or comma-separated values (.csv)"
+  },
+  {
+    "q": "Which relationship on Case should the associate use to determine how many individuals have called in to the support center?",
+    "o": [
+      "Owner",
+      "Account",
+      "Contact"
+    ],
+    "a": "Contact"
+  },
+  {
+    "q": "Which resource provides virtual and in-person learning that should help the team accelerate their Salesforce knowledge?",
+    "o": [
+      "Trailhead Community",
+      "Salesforce Help",
+      "Trailhead Academy"
+    ],
+    "a": "Trailhead Academy"
+  },
+  {
+    "q": "Where should the associate go to create a new report for Accounts?",
+    "o": [
+      "Setup",
+      "Accounts tab",
+      "Reports tab"
+    ],
+    "a": "Reports tab"
+  },
+  {
+    "q": "Where can a new user set up an email signature in Salesforce?",
+    "o": [
+      "Personal Settings",
+      "User Profile",
+      "Email Setup"
+    ],
+    "a": "Personal Settings"
+  },
+  {
+    "q": "Where should field dependencies for an object be reviewed?",
+    "o": [
+      "Object Manager",
+      "Profiles",
+      "App Builder"
+    ],
+    "a": "Object Manager"
+  },
+  {
+    "q": "What would provide GCC the most benefit by moving all departments onto the Salesforce Platform?",
+    "o": [
+      "Salesforce increases security by only requiring employees to remember one password.",
+      "Salesforce saves companies money by eliminating the need to purchase licenses for multiple systems.",
+      "Salesforce provides a complete view of a company's customers on one unified platform."
+    ],
+    "a": "Salesforce provides a complete view of a company's customers on one unified platform."
+  },
+  {
+    "q": "Using the fewest clicks, how should the associate search the account records for a business when only remembering a portion of the name?",
+    "o": [
+      "The global Search box",
+      "A list view of all accounts",
+      "A report of all accounts"
+    ],
+    "a": "The global Search box"
+  },
+  {
+    "q": "What should the team members do to ensure they receive their weekly dashboard results by email?",
+    "o": [
+      "Like the dashboard.",
+      "Subscribe to the dashboard",
+      "Follow the dashboard"
+    ],
+    "a": "Subscribe to the dashboard"
+  },
+  {
+    "q": "Which Salesforce role produces data-driven solutions by eliciting, documenting, and examining requirements around organizational challenges?",
+    "o": [
+      "Business Analyst",
+      "User Experience Designer",
+      "Platform Developer"
+    ],
+    "a": "Business Analyst"
+  },
+  {
+    "q": "Which approach should GCC explore first to automate processes in sales and service divisions?",
+    "o": [
+      "Declarative",
+      "Programmatic",
+      "Third-party consulting services"
+    ],
+    "a": "Declarative"
+  },
+  {
+    "q": "A Salesforce associate wants to summarize, filter, and move opportunities along the pipeline in a list view. What should they do?",
+    "o": [
+      "Create an Opportunity Summary report",
+      "Create an Opportunity List View.",
+      "Create an Opportunities Kanban View."
+    ],
+    "a": "Create an Opportunities Kanban View."
+  },
+  {
+    "q": "What should help the sales reps when they create lead records at trade shows but often forget to change the Lead Source field?",
+    "o": [
+      "Make an assignment rule named 'Trade Show' to only assign leads to sales reps.",
+      "Format a validation rule requiring the Lead Source field to equal 'Trade Show'.",
+      "Change the default value of the Lead Source field from 'Web' to 'Trade Show'."
+    ],
+    "a": "Change the default value of the Lead Source field from 'Web' to 'Trade Show'."
+  },
+  {
+    "q": "What should the Salesforce associate do to show that GCC is the parent of Cloud Kicks (CK) when creating the CK Account record?",
+    "o": [
+      "View account hierarchy and select Add Child Account.",
+      "Select New on the child accounts related list.",
+      "Add Get Cloudy Consulting to the Parent Account field"
+    ],
+    "a": "Add Get Cloudy Consulting to the Parent Account field"
+  },
+  {
+    "q": "What should be used to lock a record while a manager reviews an additional discount request?",
+    "o": [
+      "Validation rule",
+      "Approval process",
+      "Page layout"
+    ],
+    "a": "Approval process"
+  },
+  {
+    "q": "Which environment should be used to evaluate a new feature that requires a specific license before purchasing?",
+    "o": [
+      "Developer org",
+      "Developer sandbox",
+      "Scratch org"
+    ],
+    "a": "Developer org"
+  },
+  {
+    "q": "What should be considered before changing the field type of a custom field?",
+    "o": [
+      "The field is a required field that cannot be changed.",
+      "The field type can be changed for all custom field.",
+      "There is possible data loss when changing the field type."
+    ],
+    "a": "There is possible data loss when changing the field type."
+  },
+  {
+    "q": "What data type should the Salesforce associate recommend for a new 'Region' field to group contacts for reporting?",
+    "o": [
+      "Multi-select picklist",
+      "Picklist",
+      "Text"
+    ],
+    "a": "Picklist"
+  },
+  {
+    "q": "What is the most efficient way to find a record within a custom object called 'Shipment'?",
+    "o": [
+      "Global Search",
+      "App Launcher",
+      "Object Manager"
+    ],
+    "a": "Global Search"
+  },
+  {
+    "q": "Where should the associate go to add a related list of cases to the Account?",
+    "o": [
+      "Account Record page",
+      "Page Layout",
+      "Case Record page"
+    ],
+    "a": "Page Layout"
+  },
+  {
+    "q": "Where should GCC's Salesforce associate go to draft changes for the Account Record page such as adding tabs and making fields conditionally visible?",
+    "o": [
+      "Lightning App Builder",
+      "Record Types",
+      "Page Layouts"
+    ],
+    "a": "Lightning App Builder"
+  },
+  {
+    "q": "Which sharing type shares a single, common infrastructure and code base?",
+    "o": [
+      "Metadata",
+      "Multitenant",
+      "Trust"
+    ],
+    "a": "Multitenant"
+  },
+  {
+    "q": "A manager can see all records owned by their team, but not other teams. How is access being controlled?",
+    "o": [
+      "Permission Sets",
+      "Profiles",
+      "Role Hierarchy"
+    ],
+    "a": "Role Hierarchy"
+  },
+  {
+    "q": "What should GCC do to quickly verify if a performance incident has been reported on its instance of Salesforce?",
+    "o": [
+      "Ask a question on the Trailblazer Community.",
+      "Check System Status on the Trust site.",
+      "Open a case with Salesforce Support."
+    ],
+    "a": "Check System Status on the Trust site."
+  },
+  {
+    "q": "Which tool creates a visual representation of objects and their relationships?",
+    "o": [
+      "App Launcher",
+      "Object Manager",
+      "Schema Builder"
+    ],
+    "a": "Schema Builder"
+  },
+  {
+    "q": "What should GCC use to ensure the Annual Revenue field on Opportunities is a positive amount and does not exceed $100?",
+    "o": [
+      "Validation Rules",
+      "Assignment Rules",
+      "Default Values"
+    ],
+    "a": "Validation Rules"
+  },
+  {
+    "q": "To which Team should a Salesforce associate be added to gain access to an Account and its related opportunities?",
+    "o": [
+      "Opportunity Team",
+      "Lead Team",
+      "Account Team"
+    ],
+    "a": "Account Team"
+  },
+  {
+    "q": "Which cloud is preconfigured to handle operations management, program management, grantmaking, and fundraising?",
+    "o": [
+      "Analytics",
+      "Experience",
+      "Nonprofit"
+    ],
+    "a": "Nonprofit"
+  },
+  {
+    "q": "Which contact record component must be present so users can see a visual representation of their emails and phone calls with a contact?",
+    "o": [
+      "Activity Capture",
+      "Salesforce Inbox",
+      "Activity Timeline"
+    ],
+    "a": "Activity Timeline"
+  },
+  {
+    "q": "A Salesforce associate asks for an easier way to change the opportunity stage from a list. What should be recommended?",
+    "o": [
+      "Switch to the Kanban View.",
+      "Create multiple list views.",
+      "Use a Dynamic Dashboard View."
+    ],
+    "a": "Switch to the Kanban View."
+  },
+  {
+    "q": "What should a user do to simplify an Opportunity record page to see only what they want and avoid excessive scrolling?",
+    "o": [
+      "Collapse detail sections.",
+      "Remove activities.",
+      "Change page layout assignment."
+    ],
+    "a": "Collapse detail sections."
+  },
+  {
+    "q": "Which switches should be toggled in a report to only show the Record Count and hide individual records?",
+    "o": [
+      "Row Counts and Grand Total",
+      "Subtotals and Detail Rows",
+      "Grand Total and Subtotals"
+    ],
+    "a": "Row Counts and Grand Total"
+  },
+  {
+    "q": "What should the account owner use to learn the sum of the amount for each opportunity at the account level?",
+    "o": [
+      "The Opportunity related list",
+      "A custom report type",
+      "A Roll-Up Summary field"
+    ],
+    "a": "A Roll-Up Summary field"
+  },
+  {
+    "q": "What should be recommended to allow new users the correct access based on their department's requirements?",
+    "o": [
+      "Role Hierarchy",
+      "Individual profiles",
+      "Permission sets"
+    ],
+    "a": "Individual profiles"
+  },
+  {
+    "q": "Which Salesforce cloud provides features like Program Enrollment and Course Connections as standard offerings?",
+    "o": [
+      "Experience Cloud",
+      "Education Cloud",
+      "Marketing Cloud"
+    ],
+    "a": "Education Cloud"
+  },
+  {
+    "q": "If a Region text field is often blank or misspelled, which action is recommended to ensure correct data?",
+    "o": [
+      "Convert the Region field to a picklist field.",
+      "Create a validation rule to enforce correct spelling.",
+      "Email users a list of region names with correct spelling."
+    ],
+    "a": "Convert the Region field to a picklist field."
+  },
+  {
+    "q": "Which type of field is 'Account Source' if it has several predefined values that can be selected?",
+    "o": [
+      "Picklist",
+      "Formula",
+      "Text Area"
+    ],
+    "a": "Picklist"
+  },
+  {
+    "q": "Which Salesforce cloud solution allows GCC to send scheduled messages and track open rates for prospective and existing customers?",
+    "o": [
+      "Sales Cloud",
+      "Marketing Cloud",
+      "Service Cloud"
+    ],
+    "a": "Marketing Cloud"
+  },
+  {
+    "q": "Who would the associate typically work with to get a new field added in their Salesforce org?",
+    "o": [
+      "Salesforce Developer",
+      "Salesforce Administrator",
+      "Salesforce Technical Architect"
+    ],
+    "a": "Salesforce Administrator"
+  },
+  {
+    "q": "Which activity does Agentforce support for sales teams?",
+    "o": [
+      "Scheduling meetings with leads",
+      "Prioritizing sales activities based on lead conversion likelihood",
+      "Automating emails to leads at pre-defined times"
+    ],
+    "a": "Prioritizing sales activities based on lead conversion likelihood"
+  },
+  {
+    "q": "What is one aspect of multi-tenant architecture?",
+    "o": [
+      "Costs more than single-tenant architecture",
+      "Reserves resources per tenant",
+      "Shares resources with other tenants"
+    ],
+    "a": "Shares resources with other tenants"
+  },
+  {
+    "q": "Which user setting needs updating to allow a promoted associate Edit access to fields on opportunity records across the organization?",
+    "o": [
+      "Queue",
+      "Permission Set",
+      "Public Group"
+    ],
+    "a": "Permission Set"
+  },
+  {
+    "q": "How should a Salesforce associate ensure a dashboard has the most current data?",
+    "o": [
+      "By refreshing the browser",
+      "By clicking refresh",
+      "By opening the dashboard"
+    ],
+    "a": "By clicking refresh"
+  },
+  {
+    "q": "What is the first step in building a report of all active contacts grouped by Account?",
+    "o": [
+      "Create a new report using the Contacts & Accounts report type.",
+      "Create a Contacts report with a filter on Account.",
+      "Create a joined report with accounts and contacts."
+    ],
+    "a": "Create a new report using the Contacts & Accounts report type."
+  },
+  {
+    "q": "To which object should they add a new employee record for their client?",
+    "o": [
+      "Accounts",
+      "Leads",
+      "Contacts"
+    ],
+    "a": "Contacts"
+  },
+  {
+    "q": "Where can a non-admin learn more about an app to see if it would be a good fit for a business need?",
+    "o": [
+      "AppExchange",
+      "Trailhead",
+      "Global Search"
+    ],
+    "a": "AppExchange"
+  },
+  {
+    "q": "What is the recommended way to display partner-specific details on the Account object that don't apply to customers?",
+    "o": [
+      "Use Account for customers and create a custom object for partners.",
+      "Create record types on Account called Partner and Customer",
+      "Create custom object called Partner and Customer"
+    ],
+    "a": "Create record types on Account called Partner and Customer"
+  },
+  {
+    "q": "Which type of dashboard displays data based on the logged-in user's security settings?",
+    "o": [
+      "Static",
+      "Dynamic",
+      "Standard"
+    ],
+    "a": "Dynamic"
+  },
+  {
+    "q": "In Salesforce, what is a representation of an object?",
+    "o": [
+      "A spreadsheet where the records are rows and the fields are columns",
+      "Physical visualization of an Account, Contact, or Opportunity",
+      "A set of relationships that link an Account, Contact, or Opportunity"
+    ],
+    "a": "A spreadsheet where the records are rows and the fields are columns"
+  },
+  {
+    "q": "How can a report of all Accounts with Opportunities be created?",
+    "o": [
+      "Use the Accounts report type.",
+      "Use the Accounts with Opportunities report type.",
+      "Use the Opportunities report type."
+    ],
+    "a": "Use the Accounts with Opportunities report type."
+  },
+  {
+    "q": "What should the associate use in Global Search if they do not remember the exact name of the record?",
+    "o": [
+      "List view for each object",
+      "Object Manager",
+      "Wildcards and operators"
+    ],
+    "a": "Wildcards and operators"
+  },
+  {
+    "q": "An employee gets an invalid username error trying to sign into production using their sandbox credentials. What is needed?",
+    "o": [
+      "Creating a new username for the production org",
+      "Removing 'new Employee' appendix from the sandbox username",
+      "Creating a different password for the production org"
+    ],
+    "a": "Removing 'new Employee' appendix from the sandbox username"
+  },
+  {
+    "q": "Where should the associate go to understand the differences between the field data types?",
+    "o": [
+      "Salesforce Help",
+      "Customer Support",
+      "App Launcher"
+    ],
+    "a": "Salesforce Help"
+  },
+  {
+    "q": "What should the associate do to customize the items on the navigation bar (e.g., move Reports after Home)?",
+    "o": [
+      "Select the personalization button (pencil icon), then click and drag the item name.",
+      "Use the downward arrow next to each item name, then select Move.",
+      "Click the Setup gear icon, select User Interface and then Tabs."
+    ],
+    "a": "Select the personalization button (pencil icon), then click and drag the item name."
+  },
+  {
+    "q": "GCC needs to communicate products, improve forecasting, and offer website support. Which clouds should they consider?",
+    "o": [
+      "Service, Experience, and Marketing",
+      "Commerce, Service, and Marketing",
+      "Sales, Service, and Marketing"
+    ],
+    "a": "Sales, Service, and Marketing"
+  },
+  {
+    "q": "Two users in the same opportunity record are seeing different fields. What is the reason for this?",
+    "o": [
+      "The missing fields are marked as hidden in Object Manager.",
+      "The users are assigned different profiles and page layouts.",
+      "The users have been configured with different Locales."
+    ],
+    "a": "The users are assigned different profiles and page layouts."
+  },
+  {
+    "q": "A user no longer needs access to Salesforce. How should the associate change the user's access?",
+    "o": [
+      "Delete the user to free up the Salesforce license.",
+      "Do nothing; the user may need to access Salesforce in the future.",
+      "Deactivate the user to free up the Salesforce license."
+    ],
+    "a": "Deactivate the user to free up the Salesforce license."
+  },
+  {
+    "q": "What is the problem with creating a 'Astro3@getcloudy.org' username in a sandbox if it fails?",
+    "o": [
+      "Salesforce usernames must include the user's full name.",
+      "Salesforce usernames must be unique across all Salesforce orgs.",
+      "Salesforce usernames must be formatted with .com at the end."
+    ],
+    "a": "Salesforce usernames must be unique across all Salesforce orgs and that one is already in use."
+  },
+  {
+    "q": "GCC wants to integrate its financial system with Salesforce but found nothing on AppExchange. What should be used to build this integration?",
+    "o": [
+      "Commerce Cloud",
+      "MuleSoft",
+      "Financial Services"
+    ],
+    "a": "MuleSoft"
+  },
+  {
+    "q": "Where can the associate check the number of licenses available to be assigned to new employees?",
+    "o": [
+      "Company Information",
+      "Object Manager",
+      "User Profiles"
+    ],
+    "a": "Company Information"
+  },
+  {
+    "q": "A Salesforce associate is excited to find they can combine learning new skills with the chance of winning prizes. What is this called?",
+    "o": [
+      "Ranks",
+      "Quests",
+      "Badges"
+    ],
+    "a": "Ranks"
+  },
+  {
+    "q": "An associate is working from a custom Contact list view and noticed key information is missing. What should they do to add it?",
+    "o": [
+      "Select Fields to Display",
+      "Edit the Page Layout",
+      "Change the List Filter"
+    ],
+    "a": "Select Fields to Display"
+  },
+  {
+    "q": "Which cloud can decrease the number of incoming policy support calls by empowering customers?",
+    "o": [
+      "Service Cloud",
+      "Experience Cloud",
+      "Marketing Cloud"
+    ],
+    "a": "Experience Cloud"
+  },
+  {
+    "q": "What is a feature of AI Agents in Agentforce?",
+    "o": [
+      "Hallucination prevention",
+      "Infinite data storage",
+      "Automated license purchasing"
+    ],
+    "a": "Hallucination prevention"
+  },
+  {
+    "q": "How can a user see only contacts from a specific city on the 'New This Week' list view without changing what other users see?",
+    "o": [
+      "Clone the list view with a new name, and filter by the specific city",
+      "Edit the existing list view filters",
+      "Create a new report"
+    ],
+    "a": "Clone the list view with a new name, and filter by the specific city"
+  },
+  {
+    "q": "What type of relationship do Account and Contact objects have?",
+    "o": [
+      "Master-Detail",
+      "Lookup relationship",
+      "Many-to-Many"
+    ],
+    "a": "Lookup relationship"
+  },
+  {
+    "q": "If an associate deletes an Account, which other related records are automatically deleted?",
+    "o": [
+      "Any related opportunities",
+      "Related Leads",
+      "Related Users"
+    ],
+    "a": "Any related opportunities"
+  },
+  {
+    "q": "Which Salesforce role should help companies increase campaign effectiveness and reengage inactive customers?",
+    "o": [
+      "Marketer",
+      "Business Analyst",
+      "Administrator"
+    ],
+    "a": "Marketer"
+  },
+  {
+    "q": "Where should a name or username change be updated in Salesforce?",
+    "o": [
+      "User Record page from Setup",
+      "Company Information",
+      "Personal Settings"
+    ],
+    "a": "User Record page from Setup"
+  },
+  {
+    "q": "A sales manager requests a report grouped by Small (<$50k), Medium, and Large (>$100k) opportunities. How should the associate create this?",
+    "o": [
+      "Create a formula field",
+      "Create a bucket field off of Amount",
+      "Create a custom summary formula"
+    ],
+    "a": "Create a bucket field off of Amount"
+  },
+  {
+    "q": "Which type of org should they create within Trailhead to quickly learn, practice, and develop skills?",
+    "o": [
+      "Sandbox",
+      "Playground",
+      "Production"
+    ],
+    "a": "Playground"
+  }
+];
+
+    let currentSession = [];
+    let currentIndex = 0;
+    let score = 0;
+
+    function startQuiz() {
+        // Randomize the entire bank and pick a subset for the session
+        currentSession = fullBank.sort(() => 0.5 - Math.random()).slice(0, 15);
+        renderQuestion();
+    }
+
+    function renderQuestion() {
+        const q = currentSession[currentIndex];
+        document.getElementById('q-counter').innerText = `Question ${currentIndex + 1} / ${currentSession.length}`;
+        document.getElementById('progress-fill').style.width = `${(currentIndex / currentSession.length) * 100}%`;
+        document.getElementById('question-display').innerText = q.q;
+        
+        const optionsArea = document.getElementById('options-display');
+        optionsArea.innerHTML = "";
+        
+        q.o.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'opt-btn';
+            btn.innerText = opt;
+            btn.onclick = () => selectOption(btn, opt, q.a);
+            optionsArea.appendChild(btn);
+        });
+        document.getElementById('next-btn').style.display = 'none';
+    }
+
+    function selectOption(btn, choice, correct) {
+        const btns = document.querySelectorAll('.opt-btn');
+        btns.forEach(b => b.disabled = true);
+        
+        if (choice === correct) {
+            btn.classList.add('correct');
+            score++;
+        } else {
+            btn.classList.add('wrong');
+            btns.forEach(b => { if(b.innerText === correct) b.classList.add('correct'); });
+        }
+        document.getElementById('next-btn').style.display = 'block';
+    }
+
+    function handleNext() {
+        currentIndex++;
+        if (currentIndex < currentSession.length) {
+            renderQuestion();
+        } else {
+            showFinalResults();
+        }
+    }
+
+    function showFinalResults() {
+        document.getElementById('quiz-content').style.display = "none";
+        document.getElementById('results').style.display = "block";
+        document.getElementById('final-score').innerText = `${score} / ${currentSession.length}`;
+        document.getElementById('feedback-text').innerText = score >= 11 ? "Excellent work, Trailblazer!" : "Keep studying, you're almost there!";
+    }
+
+    startQuiz();
+</script>
+
+</body>
+</html>
