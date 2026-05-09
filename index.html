@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Salesforce Associate - Full Exam Simulator</title>
+    <title>Salesforce Certification Simulator</title>
     <style>
         :root { 
             --sf-blue: #0176d3; 
@@ -11,22 +11,53 @@
             --sf-bg: #f3f3f3; 
             --sf-green: #2e844a; 
             --sf-red: #ea001e; 
+            --sf-light-blue: #eef4ff;
         }
 
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
             background: var(--sf-bg); 
             margin: 0; 
-            padding: 10px; /* Reduced for mobile */
+            padding: 0;
             color: #333; 
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* Navbar Styles */
+        .navbar {
+            background: var(--sf-dark);
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .nav-btn.active {
+            background: var(--sf-blue);
+            border-color: var(--sf-blue);
+            font-weight: bold;
+        }
+
         .container { 
             max-width: 800px; 
-            margin: 0 auto; 
+            margin: 20px auto; 
             background: white; 
-            padding: 20px; /* Reduced from 40px */
+            padding: 20px; 
             border-radius: 12px; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
             border-top: 8px solid var(--sf-blue); 
@@ -35,7 +66,7 @@
 
         .header { 
             display: flex; 
-            flex-direction: column; /* Stack on mobile */
+            flex-direction: column; 
             gap: 5px;
             border-bottom: 1px solid #ddd; 
             padding-bottom: 15px; 
@@ -43,7 +74,7 @@
         }
 
         .q-text { 
-            font-size: 1.15rem; /* Slightly smaller for mobile */
+            font-size: 1.1rem; 
             font-weight: 600; 
             color: var(--sf-dark); 
             line-height: 1.4; 
@@ -54,80 +85,72 @@
             display: block; 
             width: 100%; 
             text-align: left; 
-            padding: 16px 20px; /* Larger hit area for thumbs */
-            margin: 12px 0; 
+            padding: 16px; 
+            margin: 10px 0; 
             border: 1.5px solid #ccc; 
             border-radius: 8px; 
             background: #fff; 
             cursor: pointer; 
             font-size: 1rem; 
-            transition: background 0.2s, border-color 0.2s;
+            transition: background 0.2s;
             box-sizing: border-box;
         }
 
-        /* Hover only applies to devices that support it */
         @media (hover: hover) {
             .opt-btn:hover:not(:disabled) { 
                 border-color: var(--sf-blue); 
-                background: #f0f8ff; 
+                background: var(--sf-light-blue); 
             }
-        }
-
-        /* Active state for better mobile feedback */
-        .opt-btn:active:not(:disabled) {
-            background: #e0f0ff;
         }
 
         .correct { background: var(--sf-green) !important; color: white; border-color: var(--sf-green); }
         .wrong { background: var(--sf-red) !important; color: white; border-color: var(--sf-red); }
 
-        .footer { 
-            margin-top: 25px; 
-            display: flex; 
-            justify-content: center; /* Center button on mobile */
-        }
+        .footer { margin-top: 25px; display: flex; justify-content: center; }
 
         .next-btn { 
             background: var(--sf-blue); 
             color: white; 
             border: none; 
             padding: 15px 40px; 
-            width: 100%; /* Full width on mobile */
+            width: 100%; 
             max-width: 300px;
-            border-radius: 30px; /* Rounded pill shape */
+            border-radius: 30px; 
             cursor: pointer; 
             font-weight: bold; 
-            font-size: 1rem;
             display: none; 
         }
 
-        .progress-bar { width: 100%; height: 10px; background: #eee; border-radius: 5px; margin-bottom: 20px; overflow: hidden; }
+        .progress-bar { width: 100%; height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
         .fill { height: 100%; background: var(--sf-blue); transition: 0.4s; }
 
         #results { display: none; text-align: center; padding: 20px 0; }
         .stat-box { font-size: 2.5rem; color: var(--sf-blue); margin: 15px 0; font-weight: bold; }
 
-        /* Desktop Adjustments */
         @media (min-width: 600px) {
-            body { padding: 40px 20px; }
-            .container { padding: 40px; }
+            body { padding-bottom: 40px; }
+            .container { padding: 40px; margin-top: 40px;}
             .header { flex-direction: row; justify-content: space-between; }
-            .q-text { font-size: 1.3rem; }
-            .footer { justify-content: flex-end; }
-            .next-btn { width: auto; }
+            .nav-btn { padding: 10px 25px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
+<nav class="navbar">
+    <button class="nav-btn active" onclick="switchExam('associate')">Associate</button>
+    <button class="nav-btn" onclick="switchExam('datacloud')">Data Cloud</button>
+    <button class="nav-btn" onclick="switchExam('agentforce')">Agentforce</button>
+</nav>
+
 <div class="container" id="quiz-wrapper">
     <div id="quiz-content">
         <div class="header">
-            <span style="font-weight: bold; color: var(--sf-blue);">Associate Practice Exam</span>
-            <span id="q-counter" style="font-size: 0.9rem; color: #666;">Question 1 / 10</span>
+            <span id="exam-title" style="font-weight: bold; color: var(--sf-blue);">Associate Exam</span>
+            <span id="q-counter" style="font-size: 0.9rem; color: #666;">Question 1 / 0</span>
         </div>
-        <div class="progress-bar"><div class="fill" id="progress-fill" style="width: 10%;"></div></div>
-        <div class="q-text" id="question-display">Loading question...</div>
+        <div class="progress-bar"><div class="fill" id="progress-fill" style="width: 0%;"></div></div>
+        <div class="q-text" id="question-display">Loading...</div>
         <div id="options-display"></div>
         <div class="footer">
             <button class="next-btn" id="next-btn" onclick="handleNext()">Next Question</button>
@@ -135,19 +158,17 @@
     </div>
 
     <div id="results">
-        <h1>Exam Complete!</h1>
-        <div class="stat-box" id="final-score">8/10</div>
-        <p id="feedback-text">Great job! You're ready for the exam.</p>
-        <button class="opt-btn" style="text-align: center; background: var(--sf-blue); color: white; border: none;" onclick="location.reload()">Restart Exam</button>
+        <h1 id="result-status">Exam Complete!</h1>
+        <div class="stat-box" id="final-score">0/0</div>
+        <p id="feedback-text">Keep practicing to master the topics.</p>
+        <button class="opt-btn" style="text-align: center; background: var(--sf-blue); color: white; border: none;" onclick="resetExam()">Restart This Exam</button>
     </div>
 </div>
 
-</body>
-</html>
 <script>
-    // Full extracted data from PDF sources
-    const fullBank = 
-        [
+    // --- EXAM DATA ---
+    const exams = {
+        associate: [
   {
     "q": "A marketing manager wants to make the Reason Lost field required on the opportunity when his stage is changed to Closed Lost. What should the salesforce associate do to enforce this requirement?",
     "o": [
@@ -913,68 +934,444 @@
     ],
     "a": "Playground"
   }
-];
+],
+        datacloud: [
+  {
+    "q": "A utility company wants to monitor smart meter readings in real-time and automatically trigger a service alert if a customer's usage pattern deviates significantly from their historical average, indicating a potential leak or appliance issue. What combination of Data Cloud features enables this?",
+    "o": [
+      "Real-time monitoring with automated workflow trigger",
+      "Streaming transform connected to email notification",
+      "Batch processing with scheduled report generation",
+      "Calculated insight with dashboard visualization"
+    ],
+    "a": "Real-time monitoring with automated workflow trigger"
+  },
+  {
+    "q": "After completing data ingestion for a financial services client, the consultant is ready to move toward segmentation. However, the data currently exists as separate records from different source systems without any connection between them. What must be completed before meaningful segmentation can occur?",
+    "o": [
+      "Identity resolution to link related records",
+      "Data activation to test the connection",
+      "Calculated insights for customer metrics",
+      "Data mapping to standard objects"
+    ],
+    "a": "Identity resolution to link related records"
+  },
+  {
+    "q": "After configuring identity resolution for a client, a consultant needs to verify that customer records from different source systems have been correctly merged into unified profiles. Which two tools can be used to validate these unified profiles?",
+    "o": [
+      "Profile Explorer",
+      "Data Action Monitor",
+      "Identity Ruleset Editor",
+      "Query API / Interface"
+    ],
+    "a": "Profile Explorer, Query API / Interface"
+  },
+  {
+    "q": "After creating a custom data model object to store customer survey responses, a consultant finds this object is not available when trying to build a new segment. What is the most likely reason for this unavailability?",
+    "o": [
+      "The object hasn't been populated with any data yet",
+      "The object lacks a connection to the Individual object",
+      "The object uses an unsupported data category",
+      "Segmentation requires object approval before use"
+    ],
+    "a": "The object lacks a connection to the Individual object"
+  },
+  {
+    "q": "After loading new product preference data from a recent survey, a marketing analyst tries to build a segment using these new attributes. The attribute values do not appear in the suggestion dropdown when typing filter criteria. What should the analyst understand about value suggestion timing?",
+    "o": [
+      "Value suggestions only work for attributes with fewer than 100 unique values",
+      "Newly modeled data requires up to 24 hours for value suggestions to generate",
+      "Value suggestions require the Data Aware Specialist permission set",
+      "Only direct attributes on the Individual object support value suggestions"
+    ],
+    "a": "Newly modeled data requires up to 24 hours for value suggestions to generate"
+  },
+  {
+    "q": "An Azure Blob Storage data stream that has been running successfully for months suddenly fails with a \"MISSING_FILE\" error message. Which two steps should the consultant take to diagnose this issue?",
+    "o": [
+      "Verify the file exists in the expected container path",
+      "Confirm the Blob Storage connector is still enabled",
+      "Check the storage account access permissions",
+      "Validate the Data Cloud user's login credentials"
+    ],
+    "a": "Verify the file exists in the expected container path, Check the storage account access permissions"
+  },
+  {
+    "q": "An e-commerce company wants to create a segment of customers who have viewed product pages within the last 14 days for a re-engagement campaign. Which date filter operator should be applied to the page view date field?",
+    "o": [
+      "Within the last X days",
+      "Between specific dates",
+      "Greater than date",
+      "On or after date"
+    ],
+    "a": "Within the last X days"
+  },
+  {
+    "q": "An insurance company wants to give their agents a complete view of all interactions a policyholder has had across channels—phone calls, website visits, email opens, and claims submissions—all in one place within the agent interface. What should the consultant recommend to achieve this unified channel view?",
+    "o": [
+      "Create calculated insights showing channel preference scores",
+      "Build dashboards in Tableau connected to Data Cloud data",
+      "Ingest all channel interaction data into Data Cloud for unified profiles",
+      "Develop segments for each channel and export to the agent desktop"
+    ],
+    "a": "Ingest all channel interaction data into Data Cloud for unified profiles"
+  },
+  {
+    "q": "An online travel agency wants to trigger a cart abandonment journey in Journey Builder whenever a customer adds flights to their cart but doesn't complete booking within 2 hours. The consultant plans to use streaming insights to trigger this data action every 15 minutes. What configuration is needed to ensure the data action fires at the required 15-minute frequency?",
+    "o": [
+      "Configure the journey entry source to check for new contacts every 15 minutes",
+      "Set the streaming insight aggregation window duration to 15 minutes",
+      "Schedule flight search data to be ingested in 15-minute batches",
+      "Configure the activation target to publish segment updates every 15 minutes"
+    ],
+    "a": "Set the streaming insight aggregation window duration to 15 minutes"
+  },
+  {
+    "q": "City Water Utility is configuring their first data stream to import customer account information from their billing system into Data Cloud. What type of data load will occur when this stream is initially deployed?",
+    "o": [
+      "Incremental load capturing only new accounts added since yesterday",
+      "On-demand load requiring manual trigger after deployment",
+      "Complete load of all existing customer account records",
+      "Partial load of accounts modified in the last 30 days"
+    ],
+    "a": "Complete load of all existing customer account records"
+  },
+  {
+    "q": "Coastal Living Realty has completed identity resolution on their property buyer data, merging records from multiple listing services and open house registrations. The marketing director wants to verify that a specific high-value prospect, Sarah Johnson, has been correctly unified with all her property viewing activities. Which two tools can the consultant use to validate Sarah’s unified profile data?",
+    "o": [
+      "Profile Explorer",
+      "Data Action History",
+      "Identity Resolution Ruleset",
+      "Query API"
+    ],
+    "a": "Profile Explorer, Query API"
+  },
+  {
+    "q": "During a privacy compliance review, a healthcare client explains they must fulfill patient \"right to be forgotten\" requests under new regulations. Which two facts should the consultant communicate to the client about how the Data Rights Subject Request tool works?",
+    "o": [
+      "Deletion requests are automatically resubmitted at 30, 60, and 90-day intervals",
+      "Deletion requests submitted in Data Cloud automatically propagate to all connected Salesforce systems",
+      "Deletion requests must be submitted against Individual profiles in Data Cloud",
+      "Deletion requests are processed and completed within one hour of submission"
+    ],
+    "a": "Deletion requests are automatically resubmitted at 30, 60, and 90-day intervals, Deletion requests must be submitted against Individual profiles in Data Cloud"
+  },
+  {
+    "q": "During identity resolution at a retail chain, customer records from the e-commerce platform show \"Robert\" as first name, while in-store POS records show \"Bob\" for what appears to be the same customer. How does Data Cloud determine which values appear in the unified profile when conflicts like these arise?",
+    "o": [
+      "Reconciliation rules evaluate configured priorities to select winning values",
+      "Match rules automatically identify which values are most accurate",
+      "The system creates multiple profiles to preserve all conflicting values",
+      "Data Cloud flags conflicts for manual resolution by an administrator"
+    ],
+    "a": "Reconciliation rules evaluate configured priorities to select winning values"
+  },
+  {
+    "q": "A client mentions they have customer data spread across their e-commerce platform, loyalty system, and email marketing tool. They need to combine this data to see each customer as a single entity. Which Data Cloud capability addresses this?",
+    "o": [
+      "Data Transformation",
+      "Profile Unification",
+      "Data Visualization",
+      "Campaign Orchestration"
+    ],
+    "a": "Profile Unification"
+  },
+  {
+    "q": "When configuring an SFTP data stream for daily CSV files (pattern: online_orders_YYYYMMDD.csv), which two settings should the consultant apply?",
+    "o": [
+      "Set the refresh mode to \"Upsert\" to add new orders and update existing ones",
+      "Set the refresh mode to \"Full Refresh\" to replace all data daily",
+      "Configure the filename pattern with a wildcard like \"online_orders_*.csv\"",
+      "Enable the \"Delete source files after ingestion\" option"
+    ],
+    "a": "Set the refresh mode to \"Upsert\" to add new orders and update existing ones, Configure the filename pattern with a wildcard like \"online_orders_*.csv\""
+  },
+  {
+    "q": "Which Data Cloud component enables historical analysis of which businesses have been included in specific segments over the past five years?",
+    "o": [
+      "Segment Hierarchy",
+      "Segment Membership Data Model Object",
+      "Calculated Insight Repository",
+      "Segment Exclusion History"
+    ],
+    "a": "Segment Membership Data Model Object"
+  },
+  {
+    "q": "What is the proper sequence to ensure the most recent inventory data is accurately reflected in a calculated insight for perishable items?",
+    "o": [
+      "Execute inventory data stream refresh -> Process identity resolution -> Generate calculated insight",
+      "Run identity resolution first -> Refresh inventory data stream -> Generate calculated insight",
+      "Generate calculated insight first -> Refresh inventory data stream -> Process identity resolution",
+      "Refresh inventory data stream -> Generate calculated insight -> Process identity resolution"
+    ],
+    "a": "Execute inventory data stream refresh -> Process identity resolution -> Generate calculated insight"
+  },
+  {
+    "q": "What step must the consultant take before raw Data Lake Objects (DLOs) from three different sources can be used in a data graph?",
+    "o": [
+      "Transform the DLOs through batch processing to create new DLOs optimized for the graph",
+      "Configure data actions to populate the data graph with the raw DLO data",
+      "Directly reference the DLOs when building the data graph structure",
+      "Map the DLOs to Data Model Objects (DMOs) and include those DMOs in the data graph"
+    ],
+    "a": "Map the DLOs to Data Model Objects (DMOs) and include those DMOs in the data graph"
+  },
+  {
+    "q": "In identity resolution configuration, what is the purpose of the \"Skip Null Values\" setting?",
+    "o": [
+      "Exclude records with missing fields from the matching process",
+      "Prevent empty fields from overwriting populated values during reconciliation",
+      "Remove incomplete profiles from the identity resolution ruleset",
+      "Ignore fields with null values when calculating match confidence"
+    ],
+    "a": "Prevent empty fields from overwriting populated values during reconciliation"
+  },
+  {
+    "q": "A marketing coordinator requires a CSV file of a specific segment for an external vendor. How should the Data Cloud consultant provide this list?",
+    "o": [
+      "Create the segment in Data Cloud, then use the \"Download\" button to export the full guest list",
+      "Configure a file storage activation target, build the guest segment, and activate it to that target",
+      "Build the segment and activate it directly to the marketing coordinator's email inbox",
+      "Create the segment and sync it to Salesforce CRM, then export the list using Data Export"
+    ],
+    "a": "Configure a file storage activation target, build the guest segment, and activate it to that target"
+  },
+  {
+    "q": "What is the correct sequence of steps to make a calculated metric (e.g., average purchase value) available for segmentation?",
+    "o": [
+      "Import customer data -> Build the average purchase value calculation -> Map data to standard objects -> Create VIP segment",
+      "Import customer data -> Map data to standard objects -> Build the average purchase value calculation -> Create VIP segment",
+      "Build the average purchase value calculation -> Map data to standard objects -> Import customer data -> Create VIP segment",
+      "Build the average purchase value calculation -> Import customer data -> Map data to standard objects -> Create VIP segment"
+    ],
+    "a": "Import customer data -> Map data to standard objects -> Build the average purchase value calculation -> Create VIP segment"
+  },
+  {
+    "q": "Which statement accurately describes how Data Cloud handles phone number ingestion?",
+    "o": [
+      "All phone numbers must be formatted as 10-digit strings without special characters.",
+      "Phone numbers can be used as unique identifiers for patient matching.",
+      "Text values containing phone numbers can be ingested into phone data type fields regardless of format",
+      "Data Cloud validates and rejects any phone number that doesn't match a standard international format."
+    ],
+    "a": "Text values containing phone numbers can be ingested into phone data type fields regardless of format"
+  },
+  {
+    "q": "A consultant observes that some transactions occurring 4 hours before a 6-hourly activation fail to trigger alerts. Which two areas should be examined to diagnose this?",
+    "o": [
+      "Evaluate the sequence of segment refresh relative to calculated insight recalculation",
+      "Confirm that calculated insights are refreshing after segment evaluation completes",
+      "Verify that calculated insights are recalculated before segment refreshes execute",
+      "Ensure data transformations are running after calculated insights are generated"
+    ],
+    "a": "Evaluate the sequence of segment refresh relative to calculated insight recalculation, Verify that calculated insights are recalculated before segment refreshes execute"
+  },
+  {
+    "q": "Premier Bank wants to instantly trigger a personalized video message when a Gold tier client views wealth management more than twice in 12 hours. Which solution meets this real-time requirement?",
+    "o": [
+      "Batch calculation of customer behavior with automated email campaign enrollment",
+      "Real-time event monitoring connected to a Marketing Cloud journey trigger",
+      "Daily segment refresh with activation to Marketing Cloud for next-day messaging",
+      "Rapid audience update with integration to Marketing Cloud for hourly processing"
+    ],
+    "a": "Real-time event monitoring connected to a Marketing Cloud journey trigger"
+  },
+  {
+    "q": "What is the most efficient approach to make multiple phone numbers (primary, secondary, emergency) from a single patient record available as Contact Point Phone records?",
+    "o": [
+      "Import the patient record and build a calculated insight to extract and normalize phone numbers",
+      "Import the patient record and implement streaming transformations to generate a separate DLO with one row per phone number, then map to Contact Point Phone",
+      "Import the patient record and add formula fields for each phone number type, then map directly to Contact Point Phone",
+      "Import the patient record and have administrative staff manually create Contact Point Phone records"
+    ],
+    "a": "Import the patient record and implement streaming transformations to generate a separate DLO with one row per phone number, then map to Contact Point Phone"
+  },
+  {
+    "q": "A marketing team wants to personalize an email with a member's current credit card type and credit limit. How should the activation be configured?",
+    "o": [
+      "Include Credit Card Type and Credit Limit as related attributes, and add a filter for Credit Card Type = \"Premium Eligible\"",
+      "Select the Multi-Product Members segment and the Email contact point without additional attributes",
+      "Select the Multi-Product Members segment, choose the Email contact point, and add Credit Card Type as a related attribute",
+      "Create a separate segment for each credit card type and activate them individually"
+    ],
+    "a": "Include Credit Card Type and Credit Limit as related attributes, and add a filter for Credit Card Type = \"Premium Eligible\""
+  },
+  {
+    "q": "Which combination of Data Cloud features enables targeting members with a $25,000 balance across accounts, a loan product, and 5+ years of membership?",
+    "o": [
+      "Streaming Insight and Activation Target",
+      "Calculated Insight and Segment",
+      "Streaming Insight and Segment",
+      "Calculated Insight and Data Action"
+    ],
+    "a": "Calculated Insight and Segment"
+  },
+  {
+    "q": "The marketing team observes that the number of records in Marketing Cloud is 15-20% lower than the segment count in Data Cloud. What is the most likely cause?",
+    "o": [
+      "Marketing Cloud activations exclude individuals who have unsubscribed from all communications",
+      "Data Cloud only activates individuals who have a valid email address mapped to Contact Point Email",
+      "Marketing Cloud automatically caps the number of records that can be activated in a single batch",
+      "Data Cloud excludes individuals who haven't engaged with previous email campaigns"
+    ],
+    "a": "Data Cloud only activates individuals who have a valid email address mapped to Contact Point Email"
+  },
+  {
+    "q": "When a customer exercises their \"right to be forgotten\", what data is removed from Data Cloud?",
+    "o": [
+      "Only the unified individual record, leaving source data intact",
+      "The Individual record and all associated data across all DMOs and DLOs",
+      "Source system records through connected APIs",
+      "Only contact point information, preserving transaction history"
+    ],
+    "a": "The Individual record and all associated data across all DMOs and DLOs"
+  },
+  {
+    "q": "When activating a segment to Amazon S3, which file in the export contains the descriptive information like field definitions and data types?",
+    "o": [
+      "The metadata file",
+      "The readme file",
+      "The archive file",
+      "The data file"
+    ],
+    "a": "The metadata file"
+  },
+  {
+    "q": "When creating a calculated insight using the Visual Insights Builder, which two components are mandatory?",
+    "o": [
+      "A filter condition to limit data scope",
+      "A calculated field to aggregate values",
+      "A grouping field to categorize results",
+      "A join between multiple data objects"
+    ],
+    "a": "A calculated field to aggregate values, A grouping field to categorize results"
+  },
+  {
+    "q": "What ethical consideration should guide decisions about collecting patient data in Data Cloud?",
+    "o": [
+      "Collect all available data for maximum analytical potential",
+      "Provide executive leadership with unrestricted data access",
+      "Only request sensitive attributes with clear justification",
+      "Store sensitive data in easily accessible locations"
+    ],
+    "a": "Only request sensitive attributes with clear justification"
+  }
+],
+        agentforce: [
+            {
+                "q": "What is the primary role of an Agent in Agentforce?",
+                "o": ["Replacing human support entirely", "Autonomous reasoning to solve tasks using tools", "Simple keyword-based chatbots", "Only sending email templates"],
+                "a": "Autonomous reasoning to solve tasks using tools"
+            }
+        ]
+    };
 
-    let currentSession = [];
+    // --- APP STATE ---
+    let currentExam = 'associate';
+    let currentQuestions = [];
     let currentIndex = 0;
     let score = 0;
+    let canAnswer = true;
 
-    function startQuiz() {
-        // Randomize the entire bank and pick a subset for the session
-        currentSession = fullBank.sort(() => 0.5 - Math.random()).slice(0, 15);
-        renderQuestion();
+    // --- LOGIC ---
+    function switchExam(examKey) {
+        // Update UI
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.innerText.toLowerCase().replace(" ", "") === examKey) btn.classList.add('active');
+        });
+
+        currentExam = examKey;
+        resetExam();
     }
 
-    function renderQuestion() {
-        const q = currentSession[currentIndex];
-        document.getElementById('q-counter').innerText = `Question ${currentIndex + 1} / ${currentSession.length}`;
-        document.getElementById('progress-fill').style.width = `${(currentIndex / currentSession.length) * 100}%`;
-        document.getElementById('question-display').innerText = q.q;
+    function resetExam() {
+        currentQuestions = exams[currentExam];
+        currentIndex = 0;
+        score = 0;
+        canAnswer = true;
         
-        const optionsArea = document.getElementById('options-display');
-        optionsArea.innerHTML = "";
+        document.getElementById('quiz-content').style.display = 'block';
+        document.getElementById('results').style.display = 'none';
+        document.getElementById('exam-title').innerText = currentExam.charAt(0).toUpperCase() + currentExam.slice(1) + " Exam";
         
-        q.o.forEach(opt => {
+        showQuestion();
+    }
+
+    function showQuestion() {
+        const qData = currentQuestions[currentIndex];
+        canAnswer = true;
+        
+        // Counter & Progress
+        document.getElementById('q-counter').innerText = `Question ${currentIndex + 1} / ${currentQuestions.length}`;
+        document.getElementById('progress-fill').style.width = `${((currentIndex + 1) / currentQuestions.length) * 100}%`;
+        
+        // Question Text
+        document.getElementById('question-display').innerText = qData.q;
+        
+        // Options
+        const optionsDiv = document.getElementById('options-display');
+        optionsDiv.innerHTML = '';
+        document.getElementById('next-btn').style.display = 'none';
+
+        qData.o.forEach(opt => {
             const btn = document.createElement('button');
             btn.className = 'opt-btn';
             btn.innerText = opt;
-            btn.onclick = () => selectOption(btn, opt, q.a);
-            optionsArea.appendChild(btn);
+            btn.onclick = () => checkAnswer(btn, opt);
+            optionsDiv.appendChild(btn);
         });
-        document.getElementById('next-btn').style.display = 'none';
     }
 
-    function selectOption(btn, choice, correct) {
-        const btns = document.querySelectorAll('.opt-btn');
-        btns.forEach(b => b.disabled = true);
-        
-        if (choice === correct) {
+    function checkAnswer(btn, selected) {
+        if (!canAnswer) return;
+        canAnswer = false;
+
+        const correct = currentQuestions[currentIndex].a;
+        const allBtns = document.querySelectorAll('.opt-btn');
+
+        if (selected === correct) {
             btn.classList.add('correct');
             score++;
         } else {
             btn.classList.add('wrong');
-            btns.forEach(b => { if(b.innerText === correct) b.classList.add('correct'); });
+            // Show correct answer
+            allBtns.forEach(b => {
+                if (b.innerText === correct) b.classList.add('correct');
+            });
         }
+
+        allBtns.forEach(b => b.disabled = true);
         document.getElementById('next-btn').style.display = 'block';
     }
 
     function handleNext() {
         currentIndex++;
-        if (currentIndex < currentSession.length) {
-            renderQuestion();
+        if (currentIndex < currentQuestions.length) {
+            showQuestion();
         } else {
-            showFinalResults();
+            showResults();
         }
     }
 
-    function showFinalResults() {
-        document.getElementById('quiz-content').style.display = "none";
-        document.getElementById('results').style.display = "block";
-        document.getElementById('final-score').innerText = `${score} / ${currentSession.length}`;
-        document.getElementById('feedback-text').innerText = score >= 11 ? "Excellent work, Trailblazer!" : "Keep studying, you're almost there!";
+    function showResults() {
+        document.getElementById('quiz-content').style.display = 'none';
+        document.getElementById('results').style.display = 'block';
+        
+        const percent = (score / currentQuestions.length) * 100;
+        document.getElementById('final-score').innerText = `${score} / ${currentQuestions.length}`;
+        
+        if (percent >= 70) {
+            document.getElementById('result-status').innerText = "Excellent !";
+            document.getElementById('feedback-text').innerText = "Vous êtes prêt pour la certification !";
+        } else {
+            document.getElementById('result-status').innerText = "Continuez vos efforts";
+            document.getElementById('feedback-text').innerText = "Révisez encore un peu les concepts clés.";
+        }
     }
 
-    startQuiz();
+    // Initialize on load
+    window.onload = resetExam;
 </script>
 
 </body>
