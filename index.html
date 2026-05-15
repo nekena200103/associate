@@ -23,7 +23,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Navbar Styles */
         .navbar {
             background: var(--sf-dark);
             padding: 10px;
@@ -96,13 +95,6 @@
             box-sizing: border-box;
         }
 
-        @media (hover: hover) {
-            .opt-btn:hover:not(:disabled) { 
-                border-color: var(--sf-blue); 
-                background: var(--sf-light-blue); 
-            }
-        }
-
         .correct { background: var(--sf-green) !important; color: white; border-color: var(--sf-green); }
         .wrong { background: var(--sf-red) !important; color: white; border-color: var(--sf-red); }
 
@@ -126,27 +118,20 @@
 
         #results { display: none; text-align: center; padding: 20px 0; }
         .stat-box { font-size: 2.5rem; color: var(--sf-blue); margin: 15px 0; font-weight: bold; }
-
-        @media (min-width: 600px) {
-            body { padding-bottom: 40px; }
-            .container { padding: 40px; margin-top: 40px;}
-            .header { flex-direction: row; justify-content: space-between; }
-            .nav-btn { padding: 10px 25px; font-size: 1rem; }
-        }
     </style>
 </head>
 <body>
 
 <nav class="navbar">
-    <button class="nav-btn active" onclick="switchExam('associate')">Associate</button>
-    <button class="nav-btn" onclick="switchExam('datacloud')">Data Cloud</button>
-    <button class="nav-btn" onclick="switchExam('agentforce')">Agentforce</button>
+    <button class="nav-btn active" id="btn-associate" onclick="switchExam('associate')">Associate</button>
+    <button class="nav-btn" id="btn-datacloud" onclick="switchExam('datacloud')">Data Cloud</button>
+    <button class="nav-btn" id="btn-agentforce" onclick="switchExam('agentforce')">Agentforce</button>
 </nav>
 
 <div class="container" id="quiz-wrapper">
     <div id="quiz-content">
         <div class="header">
-            <span id="exam-title" style="font-weight: bold; color: var(--sf-blue);">Associate Exam</span>
+            <span id="exam-title-display" style="font-weight: bold; color: var(--sf-blue);">Exam</span>
             <span id="q-counter" style="font-size: 0.9rem; color: #666;">Question 1 / 0</span>
         </div>
         <div class="progress-bar"><div class="fill" id="progress-fill" style="width: 0%;"></div></div>
@@ -164,7 +149,6 @@
         <button class="opt-btn" style="text-align: center; background: var(--sf-blue); color: white; border: none;" onclick="resetExam()">Restart This Exam</button>
     </div>
 </div>
-
 <script>
     // --- EXAM DATA ---
     const exams = {
