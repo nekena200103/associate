@@ -2770,7 +2770,7 @@
     };
 
    // --- APP STATE ---
-    let currentExam = 'agentforce';
+    let currentExam = 'associate'; // Start with Associate to match Navbar active state
     let currentQuestions = [];
     let currentIndex = 0;
     let score = 0;
@@ -2789,8 +2789,9 @@
     function switchExam(examKey) {
         document.querySelectorAll('.nav-btn').forEach(btn => {
             btn.classList.remove('active');
-            if(btn.innerText.toLowerCase().replace(" ", "") === examKey) btn.classList.add('active');
         });
+        // Correcting the button selection logic
+        document.getElementById('btn-' + examKey).classList.add('active');
 
         currentExam = examKey;
         resetExam();
@@ -2798,7 +2799,8 @@
 
     function resetExam() {
         const allQuestions = exams[currentExam];
-        // Mélanger et prendre 20 questions (ou moins si la base est petite)
+        if (!allQuestions) return; // Prevent crash if data is missing
+
         currentQuestions = shuffleArray(allQuestions).slice(0, 20);
         
         currentIndex = 0;
@@ -2807,14 +2809,16 @@
         
         document.getElementById('quiz-content').style.display = 'block';
         document.getElementById('results').style.display = 'none';
-        document.getElementById('exam-display-name').innerText = currentExam.toUpperCase() + " Simulator";
-        document.getElementById('exam-tag').innerText = currentExam;
+        
+        // Correcting ID references
+        document.getElementById('exam-title-display').innerText = currentExam.toUpperCase() + " Simulator";
         
         showQuestion();
     }
 
     function showQuestion() {
         const qData = currentQuestions[currentIndex];
+        if (!qData) return;
         canAnswer = true;
         
         document.getElementById('q-counter').innerText = `Question ${currentIndex + 1} / ${currentQuestions.length}`;
@@ -2825,7 +2829,6 @@
         optionsDiv.innerHTML = '';
         document.getElementById('next-btn').style.display = 'none';
 
-        // Mélanger les options pour éviter la mémorisation de position
         const shuffledOptions = shuffleArray(qData.o);
 
         shuffledOptions.forEach(opt => {
@@ -2877,15 +2880,13 @@
         if (percent >= 75) {
             document.getElementById('result-status').innerText = "Certifié ! 🏆";
             document.getElementById('feedback-text').innerText = "Excellent score. Vous maîtrisez le sujet.";
-        } else if (percent >= 60) {
-            document.getElementById('result-status').innerText = "Presque là ! ⚡";
-            document.getElementById('feedback-text').innerText = "Encore quelques révisions et vous passerez l'examen réel.";
         } else {
-            document.getElementById('result-status').innerText = "Continuez vos efforts 📚";
-            document.getElementById('feedback-text').innerText = "Reprenez les concepts de base et réessayez.";
+            document.getElementById('result-status').innerText = "Keep practicing! 📚";
+            document.getElementById('feedback-text').innerText = "Review the concepts and try again.";
         }
     }
 
+    // Initialize
     window.onload = resetExam;
 </script>
 
