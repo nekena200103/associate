@@ -66,10 +66,29 @@
         .header { 
             display: flex; 
             flex-direction: column; 
-            gap: 5px;
+            gap: 10px;
             border-bottom: 1px solid #ddd; 
             padding-bottom: 15px; 
             margin-bottom: 20px; 
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .settings-input {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--sf-dark);
+            background-color: white;
+            cursor: text;
+            outline: none;
+            width: 60px;
+            text-align: center;
         }
 
         .q-text { 
@@ -131,12 +150,21 @@
 <div class="container" id="quiz-wrapper">
     <div id="quiz-content">
         <div class="header">
-            <span id="exam-title-display" style="font-weight: bold; color: var(--sf-blue);">Exam</span>
+            <div class="header-top">
+                <span id="exam-title-display" style="font-weight: bold; font-size: 1.2rem; color: var(--sf-blue);">Exam</span>
+                
+                <div class="settings">
+                    <label for="num-questions" style="font-size: 0.9rem; color: #666; margin-right: 5px;">Questions:</label>
+                    <input type="number" id="num-questions" min="1" value="7" onchange="resetExam()" class="settings-input">
+                </div>
+            </div>
             <span id="q-counter" style="font-size: 0.9rem; color: #666;">Question 1 / 0</span>
         </div>
+        
         <div class="progress-bar"><div class="fill" id="progress-fill" style="width: 0%;"></div></div>
         <div class="q-text" id="question-display">Loading...</div>
         <div id="options-display"></div>
+        
         <div class="footer">
             <button class="next-btn" id="next-btn" onclick="handleNext()">Next Question</button>
         </div>
@@ -149,6 +177,7 @@
         <button class="opt-btn" style="text-align: center; background: var(--sf-blue); color: white; border: none;" onclick="resetExam()">Restart This Exam</button>
     </div>
 </div>
+
 <script>
     // --- EXAM DATA ---
     const exams = {
@@ -3959,7 +3988,7 @@
     };
 
    // --- APP STATE ---
-    let currentExam = 'associate'; // Start with Associate to match Navbar active state
+    let currentExam = 'associate'; 
     let currentQuestions = [];
     let currentIndex = 0;
     let score = 0;
@@ -3979,7 +4008,6 @@
         document.querySelectorAll('.nav-btn').forEach(btn => {
             btn.classList.remove('active');
         });
-        // Correcting the button selection logic
         document.getElementById('btn-' + examKey).classList.add('active');
 
         currentExam = examKey;
@@ -3988,9 +4016,22 @@
 
     function resetExam() {
         const allQuestions = exams[currentExam];
-        if (!allQuestions) return; // Prevent crash if data is missing
+        if (!allQuestions || allQuestions.length === 0) {
+            document.getElementById('question-display').innerText = "No questions available for this exam.";
+            return;
+        }
 
-        currentQuestions = shuffleArray(allQuestions).slice(0, 7);
+        // Read the value from the number input
+        const numInput = document.getElementById('num-questions').value;
+        
+        // If the input is empty or invalid, default to the total amount of available questions
+        let limit = (numInput && parseInt(numInput, 10) > 0) ? parseInt(numInput, 10) : allQuestions.length;
+
+        // Ensure we don't request more questions than actually exist in the JSON
+        limit = Math.min(limit, allQuestions.length);
+
+        // Shuffle and slice the array based on the calculated limit
+        currentQuestions = shuffleArray(allQuestions).slice(0, limit);
         
         currentIndex = 0;
         score = 0;
@@ -3999,7 +4040,6 @@
         document.getElementById('quiz-content').style.display = 'block';
         document.getElementById('results').style.display = 'none';
         
-        // Correcting ID references
         document.getElementById('exam-title-display').innerText = currentExam.toUpperCase() + " Simulator";
         
         showQuestion();
