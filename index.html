@@ -951,1157 +951,1507 @@
         datacloud: 
   [
   {
-    "q": "What does the Source Sequence reconciliation rule do in Identity Resolution?",
+    "q": "A client wants to bring in loyalty data from a custom object in Salesforce CRM that contains a point balance for accrued hotel points and airline points within the same record. The client wants to split these point systems into two separate records for better tracking and processing. What should a Data 360 Consultant recommend in this scenario?",
     "o": [
-      "Includes data from sources where the data is most frequently occurring.",
-      "Identifies which individual records should be merged into a unified profile by setting a priority for specific data sources.",
-      "Identifies which data sources should be used in the process of reconcillation by prioritizing the most recently updated data sourc.",
-      "Sets the priority of specific data sources when building attributes in a unified profile, such as a first or last name."
+      "Create a junction object in Salesforce CRM and modify the ingestion strategy.",
+      "Use batch transforms to create a second data lake object.",
+      "Clone the data source object.",
+      "Create a data kit from the data lake object and deploy it to the same Data 360 org."
     ],
-    "a": "Sets the priority of specific data sources when building attributes in a unified profile, such as a first or last name."
+    "a": "Use batch transforms to create a second data lake object."
   },
   {
-    "q": "Cumulus Financial uses Data Cloud to segment banking customers and activate them for direct mail via a Cloud File Storage activation. The company also wants to analyze individuals who have been in the segment within the last 2 years. Which Data Cloud component allows for this?",
+    "q": "A data architect has deployed an inbound change set containing a data kit into a new Salesforce Production org. Although the deployment status shows \"Succeeded\", the architect notices that the specific data stream configurations and calculated insights included in the kit are not yet active or visible in the Data 360 functional tabs. What is the next required action the architect must perform to fully implement the configurations within the data kit?",
     "o": [
-      "Segment exclusion.",
-      "Nested segments.",
-      "Segment membership Data Model Object.",
-      "Calculated Insights."
+      "Install the data kit from the Data 360 Setup menu to map and activate the components.",
+      "Re-upload the outbound change set from the source org to clear the metadata cache.",
+      "Run a \"Full Refresh\" on all data streams within the newly deployed change set.",
+      "Use the Salesforce Package Manager to verify the installation status of the components."
     ],
-    "a": "Segment membership Data Model Object."
+    "a": "Install the data kit from the Data 360 Setup menu to map and activate the components."
   },
   {
-    "q": "How can a consultant modify attribute names to match a naming convention in Cloud File Storage targets?",
+    "q": "A Data 360 Consultant needs to provide real-time, multidimensional analytics for a derived insight, \"Net Profit\", to be used within Tableau Next. The requirements specify that the metrics must be as up to date as possible while allowing users to dynamically filter by region, period, and product category. Which approach should the consultant take?",
     "o": [
-      "Use a formula field to update the field name in an activation.",
-      "Update attribute names in the data stream configuration.",
-      "Set preferred attribute names when configuring activation.",
-      "Update field names in the Data Model Object."
+      "Define a real-time data graph.",
+      "Create a calculated insight using SQL.",
+      "Create a calculated field in the semantic layer.",
+      "Configure a streaming transform."
     ],
-    "a": "Set preferred attribute names when configuring activation."
+    "a": "Create a calculated field in the semantic layer."
   },
   {
-    "q": "A customer has a Master Customer table from their CRM to ingest into Data Cloud. The table contains a name and primary email address, along with other Personally Identifiable Information (PII). How should the fields be mapped to support Identity Resolution?",
+    "q": "A Data 360 Consultant is explaining the benefits of zero-copy data federation to a stakeholder. Which statement best describes how data federation differs from traditional data ingestion in Data 360?",
     "o": [
-      "Create a new custom object with fields that directly match the incoming table.",
-      "Map all fields to the Customer object.",
-      "Map name to the Individual object and email address to the Contact Point Email object.",
-      "Map all fields to the Individual object, adding a custom field for the email address."
+      "Data federation requires data to be converted into CSV format before it can be accessed.",
+      "Data federation copies all data into Data 360 storage every 15 minutes.",
+      "Data federation allows Data 360 to read data directly from an external provider without moving or copying the data.",
+      "Data federation only supports data coming from other Salesforce orgs."
     ],
-    "a": "Map name to the Individual object and email address to the Contact Point Email object."
+    "a": "Data federation allows Data 360 to read data directly from an external provider without moving or copying the data."
   },
   {
-    "q": "A customer wants to use the transactional data from their data warehouse in Data Cloud. They are only able to export the data via an SFTP site. How should the file be brought into Data Cloud?",
+    "q": "A Data 360 Consultant is preparing to implement Data 360. Which ethic should the consultant adhere to regarding customer data?",
     "o": [
-      "Ingest the file with the SFTP Connector.",
-      "Ingest the file through the Cloud Storage Connector.",
-      "Manually import the file using the Data Import Wizard.",
-      "Use Salesforce's Data Loader application to perform a bulk upload from a desktop."
+      "Carefully consider asking for sensitive data such as age, gender, and ethnicity.",
+      "Give senior leaders in the firm access to customer data for audit purposes.",
+      "Collect and use all of the data to create more personalized experiences.",
+      "Map sensitive data to the same data model object for ease of deletion."
     ],
-    "a": "Ingest the file with the SFTP Connector."
+    "a": "Carefully consider asking for sensitive data such as age, gender, and ethnicity."
   },
   {
-    "q": "Cumulus Financial is ingesting transactional data via an S3 Connector in Upsert mode. They need to update a formula field created six months ago to account for more classifications. What happens to the existing records regarding this formula update?",
+    "q": "Northern Trail Outfitters uploads new customer data to an Amazon S3 bucket on a daily basis to be ingested in Data 360. Based on this, a calculated insight is created that shows the total spend per customer in the last 30 days. In which sequence should each process be run to ensure that freshly imported data is ready and available to use for any segment?",
     "o": [
-      "Data Cloud will initiate a Full Refresh of data from S3 and will update the formula on all records.",
-      "Data Cloud will only update the formula on a go-forward basis for new records.",
-      "Data Cloud does not support formula field updates for data streams of type Upsert.",
-      "Data Cloud will update the formula for all records at the next incremental Upsert refresh."
+      "Calculated Insight → Refresh Data Stream → Identity Resolution",
+      "Refresh Data Stream → Calculated Insight → Identity Resolution",
+      "Refresh Data Stream → Identity Resolution → Calculated Insight",
+      "Identity Resolution → Refresh Data Stream → Calculated Insight"
     ],
-    "a": "Data Cloud will update the formula for all records at the next incremental Upsert refresh."
+    "a": "Refresh Data Stream → Identity Resolution → Calculated Insight"
   },
   {
-    "q": "Northern Trail Outfitters wants to implement Data Cloud. Which two use cases are considered a good fit for Data Cloud?",
+    "q": "What is a Data 360 use case for improving the patient experience in the Healthcare and Life Sciences sector?",
     "o": [
-      "To ingest and unify data from various sources to reconcile customer identity and use harmonized data to accurately understand impact.",
-      "To create and orchestrate cross-channel marketing messages.",
-      "To eliminate the need for separate business intelligence and IT data management tools.",
-      "To provide transparency and security for data gathered from individuals."
+      "Activating a Unified Health Score to provide a holistic view of patient wellness and engagement",
+      "Managing the payroll of visiting physicians via a custom mobile app",
+      "Using data to predict the best location for which hospital the patient should visit",
+      "Automating the retail checkout process in hospital gift shops"
     ],
-    "a": "To ingest and unify data from various sources to reconcile customer identity and use harmonized data to accurately understand impact."
+    "a": "Activating a Unified Health Score to provide a holistic view of patient wellness and engagement"
   },
   {
-    "q": "What should an organization use to stream inventory levels from an inventory management system into Data Cloud in a fast and scalable, near-real-time way?",
+    "q": "How does Data 360 handle an individual's Right to Be Forgotten?",
     "o": [
-      "Cloud Storage Connector.",
-      "Commerce Cloud Connector.",
-      "Ingestion API.",
-      "Marketing Cloud Personalization Connector."
+      "Deletes the records from all data source objects, and any downstream data model objects are updated at the next scheduled ingestion",
+      "Deletes the specified Individual and records from any data model object/data lake object related to the Individual",
+      "Deletes the specified Individual record and its Unified Individual Link record",
+      "Deletes the specified Individual and records from any data source object mapped to the Individual data model object"
     ],
-    "a": "Ingestion API."
+    "a": "Deletes the specified Individual and records from any data model object/data lake object related to the Individual"
   },
   {
-    "q": "A customer is trying to activate data from Data Cloud to an Amazon S3 Cloud File Storage Bucket. Which authentication type should be recommended?",
+    "q": "A Data 360 Consultant wants to grant a user in Data 360 the ability to view and create segments and activations, but not allow them to modify data model mappings or identity resolution rules. Following the principle of least privilege, which standard permission set should the consultant assign to them?",
     "o": [
-      "Use a S3 Private Key Certificate.",
-      "Use a S3 Encrypted Username and Password.",
-      "Use a JWT Token generated on S3.",
-      "Use a S3 Access Key and Secret Key."
+      "Data 360 Activation Specialist",
+      "Data 360 Architect",
+      "Data 360 Activation Manager",
+      "Data 360 User"
     ],
-    "a": "Use a S3 Access Key and Secret Key."
+    "a": "Data 360 Activation Specialist"
   },
   {
-    "q": "Northern Trail Outfitters (NTO) wants to connect B2C Commerce data and bring two years of transactional history into Data Cloud. What should they use?",
+    "q": "Northern Trail Outfitters wants to compute recency, frequency, monetary (RFM) scores on its unified individuals in order to use it in Marketing Cloud Engagement. What is the best way to achieve this goal?",
     "o": [
-      "B2C Commerce Starter Bundles.",
-      "Direct Sales Order entity ingestion.",
-      "Direct Sales Product entity ingestion.",
-      "B2C Commerce Starter Bundles plus a custom extract."
+      "Include the Calculated Insight attribute in activation.",
+      "Use copy fields to show the calculated insight.",
+      "Add the score to a related list.",
+      "Import the score to Marketing Cloud via SFTP."
     ],
-    "a": "B2C Commerce Starter Bundles plus a custom extract."
-  },
-  {
-    "q": "Cumulus Financial stores Mobile, Home, and Work Phone as separate fields. What is the most efficient approach to ensure all are mapped and available for activation in Data Cloud?",
-    "o": [
-      "Map all three fields directly to the Contact Point Phone DMO from the data stream.",
-      "Use streaming transforms to normalize the phone numbers into a separate DLO with three rows, then map to Contact Point Phone DMO.",
-      "Create a Calculated Insight after ingestion to normalize the phone numbers.",
-      "Create formula fields in the data stream for each phone type and map to Contact Point Phone."
-    ],
-    "a": "Use streaming transforms to normalize the phone numbers into a separate DLO with three rows, then map to Contact Point Phone DMO."
-  },
-  {
-    "q": "A user wants to export a segment to Amazon S3 and include the Salesforce CRM Campaign ID in the resulting file name. What are two ways to achieve this?",
-    "o": [
-      "Include campaign identifier in the activation name or the filename specification.",
-      "Hard code the campaign identifier as a new attribute in the campaign activation.",
-      "Include campaign identifier in the segment name.",
-      "Update the S3 bucket path manually."
-    ],
-    "a": "Include campaign identifier in the activation name or the filename specification."
-  },
-  {
-    "q": "A consultant needs to increase the consolidation rate displayed in Identity Resolution. Which configuration change should be considered?",
-    "o": [
-      "Change reconciliation rules to Most Occurring.",
-      "Increase the number of matching rules.",
-      "Include additional attributes in the existing matching rules.",
-      "Reduce the number of matching rules."
-    ],
-    "a": "Increase the number of matching rules."
-  },
-  {
-    "q": "A customer needs to receive a notification whenever an activation fails for a particular segment. Which feature should be used?",
-    "o": [
-      "Flow.",
-      "Report.",
-      "Activation alert.",
-      "Dashboard."
-    ],
-    "a": "Activation alert."
+    "a": "Include the Calculated Insight attribute in activation."
   },
   {
     "q": "Which data model subject area defines the revenue or quantity for an opportunity by product family?",
     "o": [
-      "Engagement.",
-      "Product.",
-      "Party.",
-      "Sales Order."
+      "Product",
+      "Engagement",
+      "Sales Order",
+      "Party"
     ],
-    "a": "Sales Order."
+    "a": "Sales Order"
   },
   {
-    "q": "When performing segmentation or activation, which time zone is used to publish and refresh data?",
+    "q": "Which statement is true related to batch ingestions from Salesforce CRM?",
     "o": [
-      "Time zone specified on the activity at the time of creation.",
-      "Time zone of the user creating the activity.",
-      "Time zone of the Data Cloud Admin user.",
-      "Time zone set by the Salesforce Data Cloud org."
+      "When a column is added or removed, the CRM Connector performs a full refresh.",
+      "CRM data cannot be manually refreshed and must wait for the next scheduled synchronization.",
+      "The CRM Connector performs an incremental refresh when 600,000 or more deletion records are detected.",
+      "The CRM Connector's synchronization times can be customized to up to 15-minute intervals."
     ],
-    "a": "Time zone set by the Salesforce Data Cloud org."
+    "a": "When a column is added or removed, the CRM Connector performs a full refresh."
   },
   {
-    "q": "Northern Trail Outfitters needs to keep Data Cloud data separated by brand for security and business reasons. Which capability best supports this?",
+    "q": "A developer at Cloud Kicks is integrating customer data from a legacy system into Data 360. The legacy system does not have a primary key. The data contains customer ID and product code fields that together uniquely identify a row. What should the developer use to create a unique identifier for the data stream?",
     "o": [
-      "Data streams for each brand.",
-      "Data Model Objects for each brand.",
-      "Data spaces for each brand.",
-      "Data sources for each brand."
+      "Composite key",
+      "External ID",
+      "Data lake object (DLO)",
+      "Data model object (DMO)"
     ],
-    "a": "Data spaces for each brand."
+    "a": "Composite key"
   },
   {
-    "q": "A consultant wants to increase match accuracy by joining CRM and Marketing Contacts using CRM ID as the primary key. Which two steps should be taken?",
+    "q": "A Data 360 Consultant wants to query data within a data model object (DMO). Upon creating the workspace, they are not sure what data space to select and pick the first one in the list. When they try to create a query, the required DMO is not available. What should the consultant do?",
     "o": [
-      "Map primary keys to Party Identification (using CRM ID as the name) and create a matching rule based on Party Identification.",
-      "Map CRM ID for CRM and Marketing ID for Marketing to Party Identification.",
-      "Create a custom matching rule for an exact match on Individual ID.",
-      "Use email address matching as a fallback."
+      "Add the data space to the existing workspace.",
+      "Add the DMO to the data space they selected when creating the workspace.",
+      "Create a new workspace and select the data space the DMO belongs to.",
+      "Reference the data space name and DMO in the query within the existing workspace."
     ],
-    "a": "Map primary keys to Party Identification (using CRM ID as the name) and create a matching rule based on Party Identification."
+    "a": "Create a new workspace and select the data space the DMO belongs to."
   },
   {
-    "q": "Which feature ensures consistency when the marketing team creates future, refined segments based on foundational criteria like 'High Investment Balance'?",
+    "q": "A Data 360 Consultant is building a segment to announce a new product launch for customers who have previously purchased black pants. How should the consultant place the attributes for product color and product type from the Order Product object to meet this criteria?",
     "o": [
-      "Create new segments using nested segments.",
-      "Create a High Investment Balance Calculated Insight.",
-      "Package the criteria in a data kit.",
-      "Create new segments by cloning the original segment."
+      "Place the attributes for product color and product type in a single container.",
+      "Place the attribute for product color in one container and the attribute for product type in another container.",
+      "Place an attribute for the \"black pants\" calculated insight to dynamically apply.",
+      "Place the attributes for product color and product type as direct attributes."
     ],
-    "a": "Create new segments using nested segments."
+    "a": "Place the attributes for product color and product type in a single container."
   },
   {
-    "q": "What does it mean to build a trust-based, first-party data asset?",
+    "q": "A customer has two Data 360 orgs. A new configuration has been completed and tested for an Amazon S3 data stream and its mappings in one of the Data 360 orgs. What is recommended to package and promote this configuration to the customer's second org?",
     "o": [
-      "To provide transparency and security for data gathered from individuals who provide consent for its use and receive value in exchange.",
-      "To provide trusted data in the Data Cloud Marketplace.",
-      "To ensure opt-in consents are collected for email marketing.",
-      "To obtain competitive data through interviews and surveys."
+      "Use the Salesforce CRM Connector.",
+      "Use the Metadata API.",
+      "Package as an AppExchange application.",
+      "Create a data kit."
     ],
-    "a": "To provide transparency and security for data gathered from individuals who provide consent for its use and receive value in exchange."
+    "a": "Create a data kit."
   },
   {
-    "q": "Which two dependencies prevent a data stream from being deleted?",
+    "q": "A predictive model has been built and deployed in Einstein Studio. What is the standard method for a Data 360 Consultant to apply these predictions to a business process within Salesforce?",
     "o": [
-      "The DLO is mapped to a DMO or used in a data transform.",
-      "The DLO is used in activation.",
-      "The DLO is used in segmentation.",
-      "The DLO is part of a data kit."
+      "Manually export the CSV and re-import it into Service Cloud.",
+      "Use the Identity Resolution tool to merge predictions with Individual records.",
+      "Embed the Einstein Studio URL into a Lightning component.",
+      "Use the predict jobs feature or call the model via Flow Builder."
     ],
-    "a": "The DLO is mapped to a DMO or used in a data transform."
+    "a": "Use the predict jobs feature or call the model via Flow Builder."
   },
   {
-    "q": "What is Data Cloud's primary value to customers?",
+    "q": "A customer has a requirement to receive a notification whenever an activation fails for a particular segment. Which feature should the Data 360 Consultant use to solution for this use case?",
     "o": [
-      "To provide a unified view of a customer and their related data.",
-      "To connect all systems with a golden record.",
-      "To create a single source of truth for all anonymous data.",
-      "To create personalized campaigns by listening and acting on behavior."
+      "Activation alert",
+      "Flow",
+      "Dashboard",
+      "Report"
     ],
-    "a": "To provide a unified view of a customer and their related data."
-  },
-  {
-    "q": "Which consideration regarding the ingestion of CRM data into Data Cloud is true?",
-    "o": [
-      "CRM data cannot be manually refreshed.",
-      "Synchronization times can be customized to 15-minute intervals.",
-      "Formula fields require a Full Refresh to update.",
-      "The CRM Connector allows standard fields to stream into Data Cloud in real time."
-    ],
-    "a": "The CRM Connector allows standard fields to stream into Data Cloud in real time."
-  },
-  {
-    "q": "To honor 'Right to be Forgotten' requests via the Consent API, which two considerations apply?",
-    "o": [
-      "Requests are reprocessed at 30, 60, and 90 days and must be submitted for Individual profiles.",
-      "Requests are processed within 1 hour.",
-      "Requests are passed to all connected Salesforce clouds automatically.",
-      "Requests only delete data from the primary DMO."
-    ],
-    "a": "Requests are reprocessed at 30, 60, and 90 days and must be submitted for Individual profiles."
-  },
-  {
-    "q": "Which permission is required if a custom Salesforce CRM object is not available in the New Data Stream configuration?",
-    "o": [
-      "Create object permission in Data Cloud.",
-      "View All object permission in the source Salesforce CRM org.",
-      "Ingest Object permission in the Salesforce CRM org.",
-      "Modify Object permission in Data Cloud."
-    ],
-    "a": "View All object permission in the source Salesforce CRM org."
-  },
-  {
-    "q": "Where is Value Suggestion for attributes in segmentation enabled?",
-    "o": [
-      "Data Mapping.",
-      "Data Transformation.",
-      "Segment Setup.",
-      "Data Stream Setup."
-    ],
-    "a": "Data Mapping."
-  },
-  {
-    "q": "If an Amazon S3 data stream fails with a 'NO FILE FOUND' error, which two steps should be taken?",
-    "o": [
-      "Check if the file exists in the bucket and check Data Cloud user permissions.",
-      "Check if the S3 data source is enabled in setup.",
-      "Check if correct permissions are configured for the S3 user.",
-      "Restart the Data Cloud instance."
-    ],
-    "a": "Check if the file exists in the bucket and check Data Cloud user permissions."
-  },
-  {
-    "q": "What is the result of a segmentation criteria filtering on City | Is Equal To | 'San José'?",
-    "o": [
-      "Cities containing San José, San Jose, san jose, or san josé.",
-      "Cities only containing San Jose or san jose.",
-      "Cities only containing San Jose or San Jose.",
-      "Cities only containing San José or san josé."
-    ],
-    "a": "Cities only containing San José or san josé."
-  },
-  {
-    "q": "Which Marketing Cloud engagement channel data requires custom integration for use in Data Cloud?",
-    "o": [
-      "SMS.",
-      "Email.",
-      "CloudPage.",
-      "Mobile push."
-    ],
-    "a": "CloudPage."
-  },
-  {
-    "q": "How can a user pause a segment activation while intending to use it again later?",
-    "o": [
-      "Deactivate the segment.",
-      "Delete the segment.",
-      "Skip the activation.",
-      "Stop the publish schedule."
-    ],
-    "a": "Stop the publish schedule."
-  },
-  {
-    "q": "Which configuration supports using separate Amazon S3 buckets for ingestion and activation?",
-    "o": [
-      "Dedicated S3 data sources in Data Cloud setup.",
-      "Multiple S3 connectors in Data Cloud setup.",
-      "Dedicated S3 data sources in Activation setup.",
-      "Separate user credentials for data stream and Activation target."
-    ],
-    "a": "Dedicated S3 data sources in Data Cloud setup."
-  },
-  {
-    "q": "Why might an activated count for Marketing Cloud be smaller than the segment count in Data Cloud?",
-    "o": [
-      "Marketing Cloud applies a frequency cap.",
-      "Data Cloud requires a Contact Point for Marketing Cloud activations; records without one are excluded.",
-      "Marketing Cloud automatically suppresses unengaged individuals.",
-      "New records cannot be activated if they don't already exist in Marketing Cloud."
-    ],
-    "a": "Data Cloud requires a Contact Point for Marketing Cloud activations; records without one are excluded."
-  },
-  {
-    "q": "What is the result of using two separate containers linked by AND for: (Red Color) AND (Shoes Category)?",
-    "o": [
-      "Individuals who purchased at least one of any red product and also purchased at least one pair of shoes.",
-      "Individuals who purchased at least one red shoes as a single line item.",
-      "Individuals who made a purchase of at least one red shoes and nothing else.",
-      "Individuals who purchased at least one of any red product or purchased at least one pair of shoes."
-    ],
-    "a": "Individuals who purchased at least one of any red product and also purchased at least one pair of shoes."
-  },
-  {
-    "q": "In which two ways should a consultant honor a 'Request to be Forgotten' in Data Cloud?",
-    "o": [
-      "Add the Individual ID to a headerless file for deletion and use the Consent API to suppress processing.",
-      "Delete data from the incoming data stream and perform a Full Refresh.",
-      "Use Data Explorer to manually remove the Individual.",
-      "Remove mapping from the Individual DMO."
-    ],
-    "a": "Add the Individual ID to a headerless file for deletion and use the Consent API to suppress processing."
-  },
-  {
-    "q": "A consultant wants to unify profiles using a Loyalty ID that is different from the unique customer ID. Which object should be used in Identity Resolution for exact match rules?",
-    "o": [
-      "Party Identification object.",
-      "Loyalty Identification object.",
-      "Individual object.",
-      "Contact Identification object."
-    ],
-    "a": "Party Identification object."
-  },
-  {
-    "q": "A consultant discoveries that updates to data prior to a 12-hour activation are delayed by 24 hours. Which two areas should be reviewed?",
-    "o": [
-      "Ensure segments are refreshed after ingestion and ensure Calculated Insights run before segment refreshes.",
-      "Ensure data transformations run after Calculated Insights.",
-      "Ensure Calculated Insights run after segments are refreshed.",
-      "Increase the activation frequency to every 1 hour."
-    ],
-    "a": "Ensure segments are refreshed after ingestion and ensure Calculated Insights run before segment refreshes."
-  },
-  {
-    "q": "How can a consultant segregate Salesforce CRM Account data based on Country for different Data Cloud users?",
-    "o": [
-      "Use Salesforce sharing rules on the Account object.",
-      "Use formula fields based on the Country field.",
-      "Use streaming transforms to filter and map to separate DMOs.",
-      "Use the data spaces feature and apply filtering on the Account DLO based on Country."
-    ],
-    "a": "Use the data spaces feature and apply filtering on the Account DLO based on Country."
-  },
-  {
-    "q": "A customer notices their consolidation rate has increased. What are two likely explanations?",
-    "o": [
-      "New overlapping data sources were added and Identity Resolution rules were added to the ruleset.",
-      "Duplicates were removed from source systems.",
-      "Identity Resolution rules were removed.",
-      "Reconciliation rules were changed to 'Most Occurring'."
-    ],
-    "a": "New overlapping data sources were added and Identity Resolution rules were added to the ruleset."
-  },
-  {
-    "q": "Identity Resolution is incorrectly matching individuals who share phone numbers but are different people. What should the consultant do?",
-    "o": [
-      "Modify the existing ruleset to use fewer rules.",
-      "Create and run a new ruleset with stricter matching criteria and compare results before migrating.",
-      "Create a new ruleset with fewer matching rules.",
-      "Adjust reconciliation rules to 'Last Updated'."
-    ],
-    "a": "Create and run a new ruleset with stricter matching criteria and compare results before migrating."
-  },
-  {
-    "q": "To ensure ecommerce data is ready for scheduled activations after a nightly file import, what should the consultant do?",
-    "o": [
-      "Set activations to Incremental and publish every hour.",
-      "Use Flow to trigger a change data event to refresh Calculated Insights and segments before activations run.",
-      "Set Calculated Insights to refresh every hour.",
-      "Set segments to Rapid Publish."
-    ],
-    "a": "Use Flow to trigger a change data event to refresh Calculated Insights and segments before activations run."
-  },
-  {
-    "q": "A client wants to split a loyalty record containing both hotel and airline points into two separate records in Data Cloud. What is the recommendation?",
-    "o": [
-      "Use streaming transforms to create a second data lake object.",
-      "Create a junction object in Salesforce CRM.",
-      "Clone the data source object.",
-      "Create a data kit from the DLO."
-    ],
-    "a": "Use streaming transforms to create a second data lake object."
-  },
-  {
-    "q": "Which operator should be used to create a segment for a birthday campaign evaluated daily?",
-    "o": [
-      "Is Today.",
-      "Is Birthday.",
-      "Is Between.",
-      "Is Anniversary Of."
-    ],
-    "a": "Is Anniversary Of."
-  },
-  {
-    "q": "A user needs to review ingested data rows and validate modeling to DMOs, making changes if required. What is the minimum permission set needed?",
-    "o": [
-      "Data Cloud for Marketing Specialist.",
-      "Data Cloud Admin.",
-      "Data Cloud for Marketing Data Aware Specialist.",
-      "Data Cloud User."
-    ],
-    "a": "Data Cloud for Marketing Data Aware Specialist."
-  },
-  {
-    "q": "When discussing Data Cloud benefits for disjointed data sources, which two functional areas should be highlighted?",
-    "o": [
-      "Unified Profiles and Data Harmonization.",
-      "Master Data Management.",
-      "Data Marketplace.",
-      "Predictive Analytics."
-    ],
-    "a": "Unified Profiles and Data Harmonization."
-  },
-  {
-    "q": "Which two datasets are available in the Marketing Cloud Starter Data Bundles?",
-    "o": [
-      "MobilePush and MobileConnect.",
-      "Personalization.",
-      "Loyalty Management.",
-      "Email Engagement only."
-    ],
-    "a": "MobilePush and MobileConnect."
-  },
-  {
-    "q": "Which three features can a consultant use to validate data on a unified profile?",
-    "o": [
-      "Data Explorer, Identity Resolution, and Profile Explorer.",
-      "Query API and Data Actions.",
-      "Calculated Insights and Activation Alerts.",
-      "Data Mapping and Streaming Transforms."
-    ],
-    "a": "Data Explorer, Identity Resolution, and Profile Explorer."
-  },
-  {
-    "q": "In an Amazon S3 activated campaign, which file contains the metadata about the segment for the destination system?",
-    "o": [
-      "The .json file.",
-      "The .txt file.",
-      "The .zip file.",
-      "The .csv file."
-    ],
-    "a": "The .json file."
-  },
-  {
-    "q": "Which information is provided in the .csv file when activating to Amazon S3?",
-    "o": [
-      "The activated data payload.",
-      "An audit log of activation activity.",
-      "The manifest of origin sources.",
-      "The metadata regarding segment definition."
-    ],
-    "a": "The activated data payload."
-  },
-  {
-    "q": "Which two common use cases can be addressed with Data Cloud?",
-    "o": [
-      "Harmonize data from multiple sources with a standardized model and understand/act on customer data for relevant experiences.",
-      "Safeguard business data for backup and disaster recovery.",
-      "Govern enterprise data lifecycle policies.",
-      "Replace all external SQL databases."
-    ],
-    "a": "Harmonize data from multiple sources with a standardized model and understand/act on customer data for relevant experiences."
-  },
-  {
-    "q": "Which two actions are required when configuring an activation for a segment based on Calculated Insight RFM scores?",
-    "o": [
-      "Select contact points and choose a segment.",
-      "Add additional attributes.",
-      "Add the Calculated Insight directly in the activation.",
-      "Select a reconciliation rule."
-    ],
-    "a": "Select contact points and choose a segment."
-  },
-  {
-    "q": "Which data model subject area should be used for any Organization, Individual, or Member?",
-    "o": [
-      "Party.",
-      "Global Account.",
-      "Membership.",
-      "Engagement."
-    ],
-    "a": "Party."
-  },
-  {
-    "q": "A new custom field on the Case object in CRM is not available for a Data Cloud stream. What is the cause?",
-    "o": [
-      "The Salesforce Integration User is missing Read permissions on the new field.",
-      "Data streams only refresh every 24 hours.",
-      "Custom fields on the Case object are not supported.",
-      "Data Loader must be used for custom fields."
-    ],
-    "a": "The Salesforce Integration User is missing Read permissions on the new field."
-  },
-  {
-    "q": "Which statement is true regarding the ingestion of phone numbers into a field with a Phone data type?",
-    "o": [
-      "Text values can be accepted for ingestion.",
-      "Data Cloud validates the format at the time of Ingestion.",
-      "The field only accepts 10-digit values.",
-      "The phone number field must be the primary key."
-    ],
-    "a": "Text values can be accepted for ingestion."
-  },
-  {
-    "q": "What is a typical use case for Salesforce Data Cloud?",
-    "o": [
-      "Data Harmonization across multiple platforms.",
-      "Data synchronization across the Salesforce ecosystem.",
-      "Storing CRM data on-premises.",
-      "Sending personalized emails at scale."
-    ],
-    "a": "Data Harmonization across multiple platforms."
-  },
-  {
-    "q": "Which step allows a consultant to create a data graph based on several DLOs?",
-    "o": [
-      "Map the DLOs to DMOs and use these in the data graph.",
-      "Use a data action to update the graph.",
-      "Map the DLOs directly to a data graph.",
-      "Batch Transform DLOs to DMOs."
-    ],
-    "a": "Map the DLOs to DMOs and use these in the data graph."
-  },
-  {
-    "q": "NTO wants a segment of customers who purchased in the last 24 hours to be as up-to-date as possible. What should be implemented?",
-    "o": [
-      "Use Streaming Insights for near real-time results.",
-      "Use Einstein segmentation optimization.",
-      "Use rapid segments with a 1-hour interval.",
-      "Use standard segments with a 30-minute interval."
-    ],
-    "a": "Use Streaming Insights for near real-time results."
-  },
-  {
-    "q": "An analyst needs quick insights on average sales per day during the past week. What is recommended?",
-    "o": [
-      "Salesforce reports.",
-      "Salesforce flows.",
-      "Query API.",
-      "Segment activation to Azure."
-    ],
-    "a": "Salesforce reports."
-  },
-  {
-    "q": "After ingesting all data streams but before segmenting, what additional configuration is required?",
-    "o": [
-      "Identity Resolution.",
-      "Data Activation.",
-      "Calculated Insights.",
-      "Data Mapping."
-    ],
-    "a": "Identity Resolution."
-  },
-  {
-    "q": "NTO wants customer LTV and breakdowns by website, app, and retail channels. What should be used?",
-    "o": [
-      "Metrics on metrics.",
-      "Flow Orchestration.",
-      "Nested segments.",
-      "Streaming data transform."
-    ],
-    "a": "Metrics on metrics."
-  },
-  {
-    "q": "What is the most efficient way to ensure multiple brand teams use the same exclusion criteria updated monthly?",
-    "o": [
-      "Create a reusable container block with common criteria.",
-      "Use a data kit.",
-      "Create a nested segment.",
-      "Clone segments for each brand."
-    ],
-    "a": "Create a reusable container block with common criteria."
-  },
-  {
-    "q": "Which feature enables real-time integration with Salesforce CRM?",
-    "o": [
-      "Data Actions and Lightning web components.",
-      "Streaming transforms.",
-      "Data model triggers.",
-      "Sales and Service bundle."
-    ],
-    "a": "Data Actions and Lightning web components."
-  },
-  {
-    "q": "Which sequence of DMO joins is necessary for a Calculated Insight to identify Unified Individual LTV?",
-    "o": [
-      "Unified Individual > Unified Link Individual > Sales Order.",
-      "Unified Individual > Individual > Sales Order.",
-      "Sales Order > Individual > Unified Individual.",
-      "Sales Order > Unified Individual."
-    ],
-    "a": "Unified Individual > Unified Link Individual > Sales Order."
-  },
-  {
-    "q": "How should an activation be configured to personalize an email with 'Fund Name' for customers with multiple 'Mutual Fund' investments?",
-    "o": [
-      "Choose the segment and email contact point, add related attribute 'Fund Name', and add a filter for 'Fund Type' equal to 'Mutual Fund'.",
-      "Include Fund Type equal to Mutual Fund as a related attribute only.",
-      "Add related attribute Fund Type without filters.",
-      "Include all attributes by default for post-processing."
-    ],
-    "a": "Choose the segment and email contact point, add related attribute 'Fund Name', and add a filter for 'Fund Type' equal to 'Mutual Fund'."
-  },
-  {
-    "q": "A segment fails with an error regarding too many DLOs. What are two troubleshooting tips?",
-    "o": [
-      "Split the segment into smaller segments and use Calculated Insights to reduce query complexity.",
-      "Limit criteria to five DMOs.",
-      "Space out segment schedules.",
-      "Increase the publish frequency."
-    ],
-    "a": "Split the segment into smaller segments and use Calculated Insights to reduce query complexity."
-  },
-  {
-    "q": "Which Data Cloud feature allows users to select text attributes from a picklist of options?",
-    "o": [
-      "Value Suggestion.",
-      "Data Harmonization.",
-      "Transformation formulas.",
-      "Global picklists."
-    ],
-    "a": "Value Suggestion."
-  },
-  {
-    "q": "What are two impacts of deleting an existing Identity Resolution ruleset?",
-    "o": [
-      "Unified data associated with the ruleset and dependencies on DMOs will be removed.",
-      "All individual data will be removed.",
-      "All source profile data will be removed.",
-      "Mapping to the Party object is deleted."
-    ],
-    "a": "Unified data associated with the ruleset and dependencies on DMOs will be removed."
-  },
-  {
-    "q": "What is the correct order of processes to ensure freshly imported data from S3 is ready for segmentation?",
-    "o": [
-      "Refresh Data Stream > Identity Resolution > Calculated Insight.",
-      "Calculated Insight > Refresh Data Stream > Identity Resolution.",
-      "Refresh Data Stream > Calculated Insight > Identity Resolution.",
-      "Identity Resolution > Refresh Data Stream > Calculated Insight."
-    ],
-    "a": "Refresh Data Stream > Identity Resolution > Calculated Insight."
-  },
-  {
-    "q": "Which two requirements must be met for a Calculated Insight to appear in the segmentation canvas?",
-    "o": [
-      "The insight must contain a dimension including the Individual/Unified ID, and the segmented table's primary key must be a dimension in the insight.",
-      "Metrics must only contain numeric values.",
-      "The segmented table's primary key must be a metric.",
-      "The insight must be mapped to the Individual DMO."
-    ],
-    "a": "The insight must contain a dimension including the Individual/Unified ID, and the segmented table's primary key must be a dimension in the insight."
+    "a": "Flow"
   },
   {
     "q": "What does the Ignore Empty Value option do in Identity Resolution?",
     "o": [
-      "Ignores empty fields when running reconciliation rules.",
-      "Ignores empty fields when running custom match rules.",
-      "Ignores Individual records with empty fields.",
-      "Ignores empty fields when running standard match rules."
+      "Ignores Individual object records with empty fields when running identity resolution rules",
+      "Ignores Contact Point object records with empty fields when running identity resolution rules",
+      "Ignores empty fields when running reconciliation rules",
+      "Ignores empty fields when running match rules"
     ],
-    "a": "Ignores empty fields when running reconciliation rules."
+    "a": "Ignores empty fields when running match rules"
   },
   {
-    "q": "NTO is using Fuzzy Name and Normalized Email for Identity Resolution. How can they ensure the best email address is activated?",
+    "q": "When is it generally preferred to use a formula over a transform in Data 360?",
     "o": [
-      "Use the source priority order in activations.",
-      "Include Contact Point Email 'Is Active' field in match rules.",
-      "Prioritize Marketing Cloud as the first source in reconciliation.",
-      "Set the default reconciliation rule to Last Updated."
+      "When processing multi-terabyte datasets in parallel",
+      "When performing simple, row-level arithmetic or string manipulation",
+      "When performing complex multi-row joins",
+      "When the logic needs to be reused across 10 different ingestion sources"
     ],
-    "a": "Use the source priority order in activations."
+    "a": "When performing simple, row-level arithmetic or string manipulation"
   },
   {
-    "q": "A customer wants segments based on LTV, but the source data lacks this KPI. What is the correct sequence?",
+    "q": "An analyst needs to verify the data populated in a newly mapped data model object (DMO). They open the Query Editor within the Data 360 interface to perform a quick check of the records. What is the programming language the analyst must use to retrieve and view records from the DMO within this tool?",
     "o": [
-      "Ingest Data > Map Data to Data Model > Create Calculated Insight > Use in Segmentation.",
-      "Create Calculated Insight > Map Data to Data Model > Ingest Data > Use in Segmentation.",
-      "Create Calculated Insight > Ingest Data > Map Data to Data Model > Use in Segmentation.",
-      "Ingest Data > Create Calculated Insight > Map Data to Data Model > Use in Segmentation."
+      "Salesforce Object Query Language (SOQL)",
+      "JavaScript Object Notation (JSON)",
+      "Apex Data Manipulation Language",
+      "Structured Query Language (SQL)"
     ],
-    "a": "Ingest Data > Map Data to Data Model > Create Calculated Insight > Use in Segmentation."
+    "a": "Structured Query Language (SQL)"
   },
   {
-    "q": "Which data stream category should be assigned to use data for time-based operations in segmentation and Calculated Insights?",
+    "q": "A data architect is designing a solution to trigger a high-priority Service Recovery flow in a core Salesforce CRM org immediately after a negative sentiment event is ingested from a streaming web source. The architect needs to minimize latency to ensure the customer service team can respond \"in the moment.\" Which Data 360 capability should the architect use to achieve this near-instantaneous trigger?",
     "o": [
-      "Engagement.",
-      "Individual.",
-      "Transaction.",
-      "Sales Order."
+      "Manual activation to a Salesforce CRM target",
+      "Real-time data actions via automation event-triggered flow",
+      "Calculated insights published via real-time segment refresh",
+      "Standard data actions via scheduled batch transforms"
     ],
-    "a": "Engagement."
+    "a": "Real-time data actions via automation event-triggered flow"
   },
   {
-    "q": "NTO uploads store transactions daily to S3 and deletes files older than 7 days. Which two options should be configured for ingestion?",
+    "q": "Northern Trail Outfitters (NTO) wants to create a segment where a unique record is created in the published audience for every transaction a customer completes. If a customer makes three separate purchases, the resulting segment should contain three distinct entries for that customer to allow for transaction-specific messaging. All transactions are mapped to the Sales Order data model object (DMO), and NTO is using Identity Resolution to unify customers on the Unified Individual DMO. Which configuration should a Data 360 Consultant use to meet this requirement?",
     "o": [
-      "Set refresh mode to Upsert and ensure the filename contains a wildcard for the timestamp.",
-      "Enable deletion of old files.",
-      "Set refresh mode to Full Refresh.",
-      "Use the SFTP connector instead."
+      "Segment on the Individual DMO",
+      "Segment on a calculated insight based on Sales Orders",
+      "Segment on the Sales Order DMO",
+      "Segment on the Unified Individual DMO"
     ],
-    "a": "Set refresh mode to Upsert and ensure the filename contains a wildcard for the timestamp."
+    "a": "Segment on the Sales Order DMO"
   },
   {
-    "q": "Which solution provides an easy way to ingest Marketing Cloud subscriber profile attributes into Data Cloud daily?",
+    "q": "During a privacy law discussion with a customer, the customer indicates they need to honor requests for the Right to Be Forgotten. The Data 360 Consultant determines that Consent API will solve this business need. Which consideration should the consultant inform the customer about?",
     "o": [
-      "Marketing Cloud Data extension Data Stream.",
-      "Automation Studio and Profile file API.",
-      "Marketing Cloud Connect API.",
-      "Email Studio Started Data Bundle."
+      "Data Deletion requests are processed within 1 hour.",
+      "Data Deletion requests submitted to Data 360 are passed to all connected Salesforce clouds.",
+      "Data Deletion requests are submitted for Individual profiles.",
+      "Data Deletion automatically happens for related records."
     ],
-    "a": "Marketing Cloud Data extension Data Stream."
+    "a": "Data Deletion requests are submitted for Individual profiles."
   },
   {
-    "q": "Why might a newly created DMO not be visible when trying to create a new segment?",
+    "q": "A customer has a custom Customer_Email c object related to the standard Contact object in Salesforce CRM. This custom object stores the email address for a Contact that they want to use for activation. To which data model object should the customer map the email object to?",
     "o": [
-      "The new DMO is not of category Profile.",
-      "Data has not yet been ingested.",
-      "The DMO lacks a relationship to the Individual DMO.",
-      "Segmentation only supports standard DMOs."
+      "Custom Customer_Email c object",
+      "Contact",
+      "Contact Point Email",
+      "Individual"
     ],
-    "a": "The new DMO is not of category Profile."
+    "a": "Contact Point Email"
   },
   {
-    "q": "How does Data Cloud handle an individual's 'Right to be Forgotten'?",
+    "q": "A Data 360 Consultant is explaining the behavior of Data 360 sandboxes to a project stakeholder. The stakeholder wants to know what happens to the data on or to a Data 360 sandbox during a standard version. What is included in a standard Data 360 sandbox?",
     "o": [
-      "Deletes the specified Individual and records from any DMO/DLO related to the Individual.",
-      "Deletes the record from data source objects only.",
-      "Deletes the Individual record and its Unified Link record only.",
-      "Deletes records from any source object mapped to the Individual DMO."
+      "Every single row of historical engagement data from the last 10 years",
+      "A direct and real-time connection to the production data lake for live querying",
+      "All customer credit card information and sensitive personal passwords",
+      "Only the metadata, such as data model object (DMO) definitions and mappings"
     ],
-    "a": "Deletes the specified Individual and records from any DMO/DLO related to the Individual."
+    "a": "Only the metadata, such as data model object (DMO) definitions and mappings"
   },
   {
-    "q": "A healthcare client wants accurate Identity Resolution without risk of mis-matching. Which rule criteria is best?",
+    "q": "A user wants to be able to create a multi-dimensional metric to identify unified individual lifetime value (LTV). Which sequence of data model object (DMO) joins is necessary within the calculated insight to enable this calculation?",
     "o": [
-      "Party Identification on Patient ID.",
-      "Exact Last Name and Email.",
-      "Email Address and Phone.",
-      "Fuzzy First Name, Exact Last Name, and Email."
+      "Sales Order → Unified Individual",
+      "Unified Individual → Individual → Sales Order",
+      "Sales Order → Individual → Unified Individual",
+      "Unified Individual → Unified Link Individual → Sales Order"
     ],
-    "a": "Party Identification on Patient ID."
+    "a": "Sales Order → Individual → Unified Individual"
   },
   {
-    "q": "Cumulus Financial wants to track daily transaction volume in real time and send notifications for anomalies. What is the solution?",
+    "q": "A Data 360 Consultant for a high-growth retail brand is configuring the ingestion of customer behavioral data from a mobile application. The brand requires that the raw, unmodified data be stored exactly as it appears in the source system before any mapping or transformations occur to maintain a historical record of the transmission. Which object serves as the container of this source data in Data 360?",
     "o": [
-      "Use a Streaming Insight paired with a data action.",
-      "Use a Calculated Insight paired with a flow.",
-      "Use streaming data transform with a flow.",
-      "Use streaming data transform with a data action."
+      "Calculated Insight Object",
+      "Data Model Object",
+      "Party Identification Object",
+      "Data Lake Object"
     ],
-    "a": "Use a Streaming Insight paired with a data action."
+    "a": "Data Lake Object"
   },
   {
-    "q": "NTO operates six brands and wants to ensure 'Outlet' brand segments do not reference other brands' data. What is the most efficient approach?",
+    "q": "A data source does not have a field that can be designated as a primary key. What should the Data 360 Consultant do?",
     "o": [
-      "Separate the Outlet brand into a data space.",
-      "Use batch data transforms.",
-      "Separate brands into six different data spaces.",
-      "Use Business Unit Aware activation."
+      "Use the default primary key recommended by Data 360.",
+      "Remove duplicates from the data source and then select a primary key.",
+      "Select a field as a primary key and then add a key qualifier.",
+      "Create a composite key by combining two or more source fields through a formula field."
     ],
-    "a": "Separate the Outlet brand into a data space."
+    "a": "Create a composite key by combining two or more source fields through a formula field."
   },
   {
-    "q": "A consultant discovers that engagement-based related attributes are missing in the payload for most segment members. Which two areas should be reviewed?",
+    "q": "A Data 360 Consultant is configuring an activation for a segment created from the Unified Individual object to be sent to a Loyalty Cloud activation target. They would like to include the Loyalty Program Tier for personalization, but this field is stored in a separate Loyalty Program Member data model object (DMO) that was not used in the initial segment filters. Which feature should the consultant use during the activation setup to include this external identifier in the exported payload?",
     "o": [
-      "Ensure engagement events occurred within the last 90 days and verify the correct path is selected for related attributes.",
-      "Check if segments use profile data.",
-      "Verify profiles have a Unified Contact Point.",
-      "Check reconciliation rules for engagement data."
+      "Calculated insights to join the Loyalty Program Tier to the Unified Individual prior to segmentation",
+      "Contact point priority to rank the Loyalty Program Tier above the standard Individual ID",
+      "Activation membership to select the Loyalty Program Member DMO and its associated fields",
+      "Data stream mappings to re-map the Loyalty Program Tier as a secondary key on the Individual object"
     ],
-    "a": "Ensure engagement events occurred within the last 90 days and verify the correct path is selected for related attributes."
+    "a": "Activation membership to select the Loyalty Program Member DMO and its associated fields"
   },
   {
-    "q": "What should a consultant keep in mind regarding historical data when using the B2C Commerce Order Bundle?",
+    "q": "Which permission setting should a Data 360 Consultant check if the custom Salesforce CRM object is not available in New Data Stream configuration?",
     "o": [
-      "The bundle ingests 30 days of historical data.",
-      "The bundle does not ingest historical data.",
-      "The bundle ingests 6 months of historical data.",
-      "The bundle ingests 12 months of historical data."
+      "Confirm the View All object permission is enabled in the source Salesforce CRM org.",
+      "Confirm the Ingest object permission is enabled in the Salesforce CRM org.",
+      "Confirm the Create object permission is enabled in the Data 360 org.",
+      "Confirm the Modify object permission is enabled in the Data 360 org."
     ],
-    "a": "The bundle ingests 30 days of historical data."
+    "a": "Confirm the View All object permission is enabled in the source Salesforce CRM org."
   },
   {
-    "q": "To standardize various phone number formats to E164 during ingestion for SMS campaigns, what is the most efficient method?",
+    "q": "When reporting on calculated insights in Salesforce, what is a critical limitation a Data 360 Consultant must keep in mind regarding data freshness?",
     "o": [
-      "Create a formula field to standardize the format.",
-      "Create a Calculated Insight after ingestion.",
-      "Update the source system prior to sending.",
-      "Assign the PhoneNumber field type."
+      "The data reflects the state of the last time the insight was batch processed.",
+      "Calculated insights can only be reported on if they contain fewer than 2,000 total rows.",
+      "Insights are only available in reports if they have been \"Activated\" to a Marketing Cloud engagement.",
+      "Calculated insights are only updated once every 24 hours."
     ],
-    "a": "Create a formula field to standardize the format."
+    "a": "The data reflects the state of the last time the insight was batch processed."
   },
   {
-    "q": "A consultant needs to publish segment data to the Audience DMO to be retrieved via Query APIs. Which target type should be selected?",
+    "q": "Cumulus Financial (CF) wants to target loyal and engaged customers. When a platinum-tier customer visits their investment pages more than three times in a 24-hour period, CF wants to immediately send an email that offers a private consultation. What should a Data 360 Consultant recommend for this business requirement?",
     "o": [
-      "Data Cloud.",
-      "External Activation Target.",
-      "Marketing Cloud.",
-      "Marketing Cloud Personalization."
+      "Create a segment with standard publish to Marketing Cloud Engagement.",
+      "Create a streaming insight with a data action to Marketing Cloud Engagement.",
+      "Create a segment with rapid publish to Marketing Cloud Engagement.",
+      "Create a calculated insight with a data action to Marketing Cloud Engagement."
     ],
-    "a": "Data Cloud."
-  }
-,
-  {
-    "q": "A utility company wants to monitor smart meter readings in real-time and automatically trigger a service alert if a customer's usage pattern deviates significantly from their historical average, indicating a potential leak or appliance issue. What combination of Data Cloud features enables this?",
-    "o": [
-      "Real-time monitoring with automated workflow trigger",
-      "Streaming transform connected to email notification",
-      "Batch processing with scheduled report generation",
-      "Calculated insight with dashboard visualization"
-    ],
-    "a": "Real-time monitoring with automated workflow trigger"
+    "a": "Create a streaming insight with a data action to Marketing Cloud Engagement."
   },
   {
-    "q": "After completing data ingestion for a financial services client, the consultant is ready to move toward segmentation. However, the data currently exists as separate records from different source systems without any connection between them. What must be completed before meaningful segmentation can occur?",
+    "q": "A global ecommerce company uses Salesforce Data 360 to unify customer profiles across multiple systems, including Salesforce CRM, Commerce Cloud, and Snowflake. The business wants to securely leverage unified customer data across Snowflake to support analytics and downstream use cases. The solution must meet the following requirements: Customer data accessed from Snowflake must be read-only; Updates to customer profiles must be available in near real time; The overall architecture must minimize operational complexity and data duplication. Which approach should the Data 360 Consultant recommend?",
     "o": [
-      "Identity resolution to link related records",
-      "Data activation to test the connection",
-      "Calculated insights for customer metrics",
-      "Data mapping to standard objects"
+      "Expose Data 360 data through REST APIs and ingest it into Snowflake using streaming ingestion.",
+      "Schedule nightly exports of Data 360 data to cloud storage and load it into Snowflake using automated pipelines.",
+      "Replicate Data 360 data into Salesforce standard objects and sync those objects to Snowflake using extract, transform, load (ETL) tools.",
+      "Use Data 360 Data Sharing to share unified customer data directly to Snowflake."
     ],
-    "a": "Identity resolution to link related records"
+    "a": "Use Data 360 Data Sharing to share unified customer data directly to Snowflake."
   },
   {
-    "q": "After configuring identity resolution for a client, a consultant needs to verify that customer records from different source systems have been correctly merged into unified profiles. Which two tools can be used to validate these unified profiles?",
+    "q": "A Data 360 Consultant wants to ensure that every segment managed by multiple brand teams adheres to the same set of exclusion criteria that are updated on a monthly basis. What is the most efficient option to allow for this capability?",
     "o": [
-      "Profile Explorer",
-      "Data Action Monitor",
-      "Identity Ruleset Editor",
-      "Query API / Interface"
+      "Create a segment and copy it for each brand.",
+      "Create, publish, and deploy a data kit.",
+      "Create a reusable container block with common criteria.",
+      "Create a nested segment."
     ],
-    "a": "Profile Explorer, Query API / Interface"
+    "a": "Create a reusable container block with common criteria."
   },
   {
-    "q": "After creating a custom data model object to store customer survey responses, a consultant finds this object is not available when trying to build a new segment. What is the most likely reason for this unavailability?",
+    "q": "A Data 360 Consultant needs to build a model on Einstein Studio to predict the time-to-close of an opportunity brought into Data 360 from CRM. Based on the supported model types, which statement is true?",
     "o": [
-      "The object hasn't been populated with any data yet",
-      "The object lacks a connection to the Individual object",
-      "The object uses an unsupported data category",
-      "Segmentation requires object approval before use"
+      "The consultant should use a Multiclass Classification model to bucket the time-to-close into specifications.",
+      "The consultant should use a Binary Classification model to determine if the time-to-close is long or short.",
+      "The consultant should use a Multiclass Classification model because the outcome is represented as text data.",
+      "The consultant should use a Regression model because the target outcome is a numeric measure."
     ],
-    "a": "The object lacks a connection to the Individual object"
+    "a": "The consultant should use a Regression model because the target outcome is a numeric measure."
   },
   {
-    "q": "After loading new product preference data from a recent survey, a marketing analyst tries to build a segment using these new attributes. The attribute values do not appear in the suggestion dropdown when typing filter criteria. What should the analyst understand about value suggestion timing?",
+    "q": "A user has built a segment in Data 360 and is in the process of creating an activation. When selecting related attributes, they cannot find a specific set of attributes they know to be related to the individual. Which statement explains why these attributes are not available?",
     "o": [
-      "Value suggestions only work for attributes with fewer than 100 unique values",
-      "Newly modeled data requires up to 24 hours for value suggestions to generate",
-      "Value suggestions require the Data Aware Specialist permission set",
-      "Only direct attributes on the Individual object support value suggestions"
+      "The desired attributes reside on different related paths.",
+      "The attributes are being used in another activation.",
+      "Activations can only include 1-to-1 attributes.",
+      "The segment is not segmenting on profile data."
     ],
-    "a": "Newly modeled data requires up to 24 hours for value suggestions to generate"
+    "a": "The desired attributes reside on different related paths."
   },
   {
-    "q": "An Azure Blob Storage data stream that has been running successfully for months suddenly fails with a \"MISSING_FILE\" error message. Which two steps should the consultant take to diagnose this issue?",
+    "q": "Which statement about query federation in Data 360 is true?",
     "o": [
-      "Verify the file exists in the expected container path",
-      "Confirm the Blob Storage connector is still enabled",
-      "Check the storage account access permissions",
-      "Validate the Data Cloud user's login credentials"
+      "Query federation requires file-based data lakes such as Iceberg.",
+      "Data 360 executes queries using its own compute engine, regardless of the external system.",
+      "Query federation pushes SQL queries to the external system's compute layer.",
+      "Query federation requires data to be first converted to parquet format."
     ],
-    "a": "Verify the file exists in the expected container path, Check the storage account access permissions"
+    "a": "Query federation pushes SQL queries to the external system's compute layer."
   },
   {
-    "q": "An e-commerce company wants to create a segment of customers who have viewed product pages within the last 14 days for a re-engagement campaign. Which date filter operator should be applied to the page view date field?",
+    "q": "In Data 360, which mechanism ensures different business units can use the same Data 360 home org while keeping their data and metadata logically separated, to meet governance or compliance requirements?",
     "o": [
-      "Within the last X days",
-      "Between specific dates",
-      "Greater than date",
-      "On or after date"
+      "Use separate companion connections within the same data space",
+      "Use different permission sets within the same data space",
+      "Use separate data spaces for each business unit",
+      "Use separate objects per business unit with record-type filtering"
     ],
-    "a": "Within the last X days"
+    "a": "Use separate data spaces for each business unit"
   },
   {
-    "q": "An insurance company wants to give their agents a complete view of all interactions a policyholder has had across channels—phone calls, website visits, email opens, and claims submissions—all in one place within the agent interface. What should the consultant recommend to achieve this unified channel view?",
+    "q": "The recruiting team at Cumulus Financial wants to identify which candidates have browsed the jobs page on its website at least twice within the last 30 minutes. They want the information about these candidates to automatically be available for segmentation in Data 360 and the candidates added to their recruiting system. Which feature should a Data 360 Consultant recommend to achieve this goal?",
     "o": [
-      "Create calculated insights showing channel preference scores",
-      "Build dashboards in Tableau connected to Data Cloud data",
-      "Ingest all channel interaction data into Data Cloud for unified profiles",
-      "Develop segments for each channel and export to the agent desktop"
+      "Calculated insight",
+      "Batch data transform",
+      "Streaming data transform",
+      "Streaming insight"
     ],
-    "a": "Ingest all channel interaction data into Data Cloud for unified profiles"
+    "a": "Streaming insight"
   },
   {
-    "q": "An online travel agency wants to trigger a cart abandonment journey in Journey Builder whenever a customer adds flights to their cart but doesn't complete booking within 2 hours. The consultant plans to use streaming insights to trigger this data action every 15 minutes. What configuration is needed to ensure the data action fires at the required 15-minute frequency?",
+    "q": "A Data 360 Consultant wants to create a new segment in Data 360. What are the available options for segmentation criteria?",
     "o": [
-      "Configure the journey entry source to check for new contacts every 15 minutes",
-      "Set the streaming insight aggregation window duration to 15 minutes",
-      "Schedule flight search data to be ingested in 15-minute batches",
-      "Configure the activation target to publish segment updates every 15 minutes"
+      "Only direct attributes and calculated insights",
+      "Direct attributes, related attributes, and calculated insights",
+      "Direct attributes, related attributes, calculated insights, and streaming insights",
+      "Only direct attributes and related attributes"
     ],
-    "a": "Set the streaming insight aggregation window duration to 15 minutes"
+    "a": "Direct attributes, related attributes, calculated insights, and streaming insights"
   },
   {
-    "q": "City Water Utility is configuring their first data stream to import customer account information from their billing system into Data Cloud. What type of data load will occur when this stream is initially deployed?",
+    "q": "Northern Trail Outfitters (NTO) wants to connect its B2C Commerce data with Data 360 and bring 2 years of transactional history into Data 360. What should NTO use to achieve this?",
     "o": [
-      "Incremental load capturing only new accounts added since yesterday",
-      "On-demand load requiring manual trigger after deployment",
-      "Complete load of all existing customer account records",
-      "Partial load of accounts modified in the last 30 days"
+      "Sales Order object ingestion",
+      "Sales Product object ingestion",
+      "B2C Commerce Starter Bundles plus a custom extract",
+      "B2C Commerce Starter Bundles"
     ],
-    "a": "Complete load of all existing customer account records"
+    "a": "B2C Commerce Starter Bundles plus a custom extract"
   },
   {
-    "q": "Coastal Living Realty has completed identity resolution on their property buyer data, merging records from multiple listing services and open house registrations. The marketing director wants to verify that a specific high-value prospect, Sarah Johnson, has been correctly unified with all her property viewing activities. Which two tools can the consultant use to validate Sarah’s unified profile data?",
+    "q": "A data science team has developed a custom propensity-to-churn model in Amazon SageMaker. The company wants to use this model to score its Unified Profiles in Data 360 and use those scores for a high-priority retention segment. The Data 360 Consultant needs to ensure the data is not duplicated or moved out of Data 360 during this process. Which feature should the consultant use to integrate this model?",
     "o": [
-      "Profile Explorer",
-      "Data Action History",
+      "Einstein Studio Bring Your Own Model (BYOM)",
+      "Model Builder in Prompt Builder",
+      "Streaming Data Transforms",
+      "Ingestion API"
+    ],
+    "a": "Einstein Studio Bring Your Own Model (BYOM)"
+  },
+  {
+    "q": "Northern Trail Outfitters has customer data in three separate systems. Each system uses a different unique internal identifier for the same individual. However, all three systems consistently capture a common Loyalty Program ID for every customer. Which feature should a Data 360 Consultant use to link these records into a single Unified Profile based on this shared external ID?",
+    "o": [
+      "Use the Internal Organization match rule.",
+      "Create an Exact Name and Email match rule.",
+      "Implement the Exact Phone Number match rule.",
+      "Configure a Party Identification match rule."
+    ],
+    "a": "Configure a Party Identification match rule."
+  },
+  {
+    "q": "A Data 360 Consultant has been asked to help a customer implement Data 360 to improve their customer experience. They have identified four potential use cases. Which scenario represents the most appropriate initial use case based on Salesforce implementation best practices?",
+    "o": [
+      "Implementing a complex, sub-second web personalization engine using 15 disparate third-party data streams with varying schemas",
+      "Moving 20 years of legacy transaction data into Data 360 to reduce storage costs in their primary CRM org",
+      "Redefining the global identity resolution rules for 1 billion records across 12 global regions simultaneously without a specific departmental pilot",
+      "Consolidating three systems (Sales, Service, and Marketing Cloud) to provide a \"Single View of the Customer\" for high-tier support agents"
+    ],
+    "a": "Consolidating three systems (Sales, Service, and Marketing Cloud) to provide a \"Single View of the Customer\" for high-tier support agents"
+  },
+  {
+    "q": "A customer service manager wants to implement generative AI in Salesforce to help agents answer customer inquiries. They are concerned that the AI might give generic or inaccurate responses if it doesn't have access to the company's internal knowledge and data. Which Salesforce Data 360 feature should help ensure the AI provides accurate, contextually relevant answers by using internal data?",
+    "o": [
+      "Disabling vector embeddings to increase the accuracy of generative model processing",
+      "Automatically converting unstructured data into structured Salesforce records",
+      "Retrieval Augmented Generation (RAG) to ground AI prompts with relevant internal data",
+      "Replacing all structured data with AI-generated insights"
+    ],
+    "a": "Retrieval Augmented Generation (RAG) to ground AI prompts with relevant internal data"
+  },
+  {
+    "q": "A global beverage company (data provider) and a sports media network (data consumer) are collaborating in a Data 360 clean room to identify high-value partnership opportunities. The parties decide to use the segment overlap use case template to determine how many of the beverage company's Premium Loyalty Members are also active subscribers of the sports network, without exposing raw personally identifiable information (PII). When configuring the segment overlap template, which requirement must be met to allow the results to be filtered by specific demographics like \"Region\" or \"Age Group\" in the final output?",
+    "o": [
+      "The Region and Age Group fields must be set as foreign keys in the data model objects (DMOs) of both organizations.",
+      "Both parties must map their \"Region\" and \"Age Group\" data to a shared calculated insight before joining the clean room.",
+      "The Data 360 Consultant must configure a many-to-many relationship between the two search index data model objects (DMOs).",
+      "The data provider must include these additional fields as segmentation attributes within the use case template configuration."
+    ],
+    "a": "The data provider must include these additional fields as segmentation attributes within the use case template configuration."
+  },
+  {
+    "q": "Cumulus Financial needs to create a composite key on an incoming data source that combines the fields Customer Region and Customer Identifier. Which formula function should a Data 360 Consultant use to create a composite key when a primary key is not available in a data stream?",
+    "o": [
+      "COALESCE",
+      "CONCAT",
+      "COMBINE",
+      "CAST"
+    ],
+    "a": "CONCAT"
+  },
+  {
+    "q": "A global marketing team is using Salesforce Data 360 to create highly targeted segments. Many of the team members are new to the organization and are unfamiliar with the data model and attributes, such as various Product Category names. This lack of data knowledge is causing delays, as users must frequently ask the data team for assistance in identifying the proper segmentation criteria. Which configuration should a Data 360 Consultant implement on the data model object (DMO) so that these users can see and select from the actual data values present in the system while building their segments?",
+    "o": [
+      "Create a data kit and share a list of values across all marketing users.",
+      "Create a Data 360 Report for each DMO that counts how many times each value appears for a given attribute.",
+      "Utilize Data Explorer or Query Editor to identify common attribute values.",
+      "Enable Value Suggestion for text fields on DMOs."
+    ],
+    "a": "Enable Value Suggestion for text fields on DMOs."
+  },
+  {
+    "q": "A customer is interested in tracking their Average Time To Close for Service Cloud cases. They are looking for a flexible solution that provides near real-time reporting and allows different teams to review the data across the relevant dimensions for that team coming from Sales, Service, Marketing, and Commerce Clouds. Which solution meets the customer's needs?",
+    "o": [
+      "ata Model Object (DMO) Formula Fields",
+      "Service Cloud Reports",
+      "Calculated Insights",
+      "Semantic Model Metrics"
+    ],
+    "a": "Semantic Model Metrics"
+  },
+  {
+    "q": "A Data 360 Consultant for Northern Trail Outfitters is observing Identity Resolution processing metrics. The consultant notices that the volume of source profiles processed in the most recent batch is less than the total volume of source profiles. What is the most likely mechanism that causes source profiles to be skipped during Identity Resolution processing?",
+    "o": [
+      "A profile is only sent for unification if the assigned data stream is running at its maximum frequency.",
+      "A profile is skipped if the calculated Unification Score does not meet the minimum threshold set in the identity resolution rules.",
+      "A profile is only processed if a pre-processing step confirms a change in its data since the last processing run.",
+      "A profile is excluded if it fails the initial Data Quality Score check, preventing unification."
+    ],
+    "a": "A profile is only processed if a pre-processing step confirms a change in its data since the last processing run."
+  },
+  {
+    "q": "A solution architect needs to create a segment of \"High Value Customers\". They define this as anyone who qualifies for the existing Platinum Loyalty segment OR anyone who has spent more than US $5,000. What is the most efficient way to build this?",
+    "o": [
+      "Create a waterfall segment, prioritizing the \"Platinum Loyalty\" group first and the \"High Spender\" group second.",
+      "Use a nested segment for \"Platinum Loyalty\" and add a separate container for the minimum spend within OR operator.",
+      "Create two separate segments and join them together in a Tableau dashboard for activation.",
+      "Build a calculated insight that joins both conditions and use that as the only filter in a new segment."
+    ],
+    "a": "Use a nested segment for \"Platinum Loyalty\" and add a separate container for the minimum spend within OR operator."
+  },
+  {
+    "q": "A Data 360 Consultant is configuring a zero-copy architecture where an external Snowflake instance needs to access Data 360 data without the latency of traditional extract, transform, load (ETL) processes. Which capability should the consultant use to expose Data 360 objects to the external Snowflake environment?",
+    "o": [
+      "Data 360 Webhook Subscriptions",
+      "Data 360 Data Shares",
+      "Data 360 Data Bundles",
+      "Data 360 S3 Direct Ingress"
+    ],
+    "a": "Data 360 Data Shares"
+  },
+  {
+    "q": "A Data 360 Consultant has set up an identity resolution ruleset for their client's Data 360 implementation and now wants to confirm the results. Which two features should the consultant use to validate the data on a unified profile?",
+    "o": [
+      "Profile Explorer & Query Editor",
+      "Data Explorer & Actions",
+      "Identity Resolution & Query API",
+      "Data Actions & Query API"
+    ],
+    "a": "Profile Explorer & Query Editor"
+  },
+  {
+    "q": "A Data 360 Consultant has a large historical dataset stored in Snowflake as parquet files in an object store. The consultant needs to run heavy analytics queries periodically, with high throughput but not necessarily real-time needs. Which Data 360 pattern is most appropriate?",
+    "o": [
+      "Query federation without acceleration (Live or Direct Access)",
+      "Ingest data into Data 360 as a data lake object (DLO)",
+      "File federation",
+      "Query federation with acceleration (Caching)"
+    ],
+    "a": "Query federation with acceleration (Caching)"
+  },
+  {
+    "q": "A Data 360 Consultant needs to filter out specific contact points from the Unified Individuals that qualify for a segment. Where should the consultant apply this filtering?",
+    "o": [
+      "Apply contact point filtering during the creation of the segment",
+      "Apply contact point filtering when creating an activation",
+      "Apply contact point filtering leveraging a calculated insight",
+      "Apply contact point filtering on data ingestion"
+    ],
+    "a": "Apply contact point filtering when creating an activation"
+  },
+  {
+    "q": "Northern Trail Outfitters has ingested customer profile data and related email engagement data from two separate marketing systems. Both systems use the same customer identifier. Which feature should a Data 360 Consultant implement to ensure that engagement records are accurately associated with the correct source profile and avoid misinterpretation of the related engagement data?",
+    "o": [
+      "Profile Unification Rules",
+      "Identity Resolution Reconciliation Rules",
+      "Identity Resolution Match Rules",
+      "Fully Qualified Keys"
+    ],
+    "a": "Fully Qualified Keys"
+  },
+  {
+    "q": "A Data 360 Consultant is setting up a zero-copy data federation connection with a partner, Snowflake. What is the first step the consultant must perform in Data 360?",
+    "o": [
+      "Map the external data directly to the Unified Individual data model object (DMO).",
+      "Establish a connection in the Data 360 Setup using the specific provider's credentials.",
+      "Create a data stream using the Bulk API category using the specific provider's credentials.",
+      "Run an identity resolution matching rule."
+    ],
+    "a": "Establish a connection in the Data 360 Setup using the specific provider's credentials."
+  },
+  {
+    "q": "A Data 360 Consultant noticed a recent increase in a customer's consolidation rate. Which change to the identity resolution ruleset typically causes this result?",
+    "o": [
+      "Modifying a ruleset that increases the number of matched profiles",
+      "Removing existing identity resolution rules",
+      "Reducing the number of data sources mapped to the Individual object",
+      "Deleting duplicate records from source data streams"
+    ],
+    "a": "Modifying a ruleset that increases the number of matched profiles"
+  },
+  {
+    "q": "A Data 360 Consultant is performing a source system inventory for Northern Trail Outfitters (NTO). During the review of the standard data model, the consultant identifies several business-specific fields in the source system that do not have a corresponding field in the standard data model objects (DMOs). Following best practices for mapping preparation, which action should the consultant take?",
+    "o": [
+      "Extend the relevant standard DMOs by adding custom fields to accommodate the missing data.",
+      "Ignore the business-specific fields and map only the fields that exist in the standard DMOs.",
+      "Create a new custom DMO for every business-specific field identified in the source system.",
+      "Map the business-specific fields to the \"Other\" category to avoid modifying the standard model."
+    ],
+    "a": "Extend the relevant standard DMOs by adding custom fields to accommodate the missing data."
+  },
+  {
+    "q": "A Data 360 Consultant is building a marketing-to-sales handoff process that requires sales reps to see a chronological list of a prospect's Web Page Views and Email Clicks directly on the Lead record. These interactions are stored as Engagement data in Data 360. What is the most efficient way to display this?",
+    "o": [
+      "Embed a filtered report chart on the record page that queries the Data 360 objects directly.",
+      "Drag the native Data 360 Related List Enrichment onto the Lead Lightning page and configure the relevant Engagement data model objects (DMOs).",
+      "Create a custom object in Salesforce, use Flow to sync Data 360 Engagement records back to CRM, and add a standard related list.",
+      "Use Dynamic Forms to conditionally show fields from the Data 360 Individual object based on the Lead's status."
+    ],
+    "a": "Drag the native Data 360 Related List Enrichment onto the Lead Lightning page and configure the relevant Engagement data model objects (DMOs)."
+  },
+  {
+    "q": "Which tool should users use to visualize and analyze unified customer data in Data 360?",
+    "o": [
+      "Salesforce CLI",
+      "Intelligence Reports Advanced",
+      "Heroku",
+      "Tableau"
+    ],
+    "a": "Tableau"
+  },
+  {
+    "q": "A company stores customer data in Marketing Cloud and uses the Marketing Cloud Connector to ingest data into Data 360. Where does a request for Data Deletion or Right to Be Forgotten get submitted?",
+    "o": [
+      "Through Consent API",
+      "In Data 360 settings",
+      "In Marketing Cloud settings",
+      "On the individual data profile in Data 360"
+    ],
+    "a": "Through Consent API"
+  },
+  {
+    "q": "A lead architect needs to build a real-time Customer Health Dashboard in a custom web portal that displays a unified customer's recent purchase history and their calculated loyalty score. Which API strategy is most appropriate?",
+    "o": [
+      "Use the Query API to send an SQL/SQL-based request.",
+      "Use the Profile API because it is optimized for high-speed retrieval of unified profile attributes and calculated insights.",
+      "Use the Metadata API to retrieve the schema, then use a standard REST GET call.",
+      "Use the Ingestion API to push dashboard requirements into a data stream to trigger a webhook."
+    ],
+    "a": "Use the Profile API because it is optimized for high-speed retrieval of unified profile attributes and calculated insights."
+  },
+  {
+    "q": "What is a key requirement for a flow to be able to act on Data 360 data in near real time using a data action?",
+    "o": [
+      "The Data 360 home instance must be in the same Salesforce CRM org.",
+      "The flow must be a screen flow embedded on the record page.",
+      "The data action must be mapped to a platform event that the flow is subscribed to.",
+      "The flow must be active and the user must have the Data 360 Marketing Admin permission."
+    ],
+    "a": "The data action must be mapped to a platform event that the flow is subscribed to."
+  },
+  {
+    "q": "Cumulus Financial created a segment called High Investment Balance Customers. This is a foundational segment. What should the consultant recommend to ensure consistency when the team creates future, more refined segments?",
+    "o": [
+      "Create new segments using nested segments.",
+      "Create new segments by cloning High Investment Balance Customers.",
+      "Create a High Investment Balance calculated insight.",
+      "Package High Investment Balance Customers in a data kit."
+    ],
+    "a": "Create new segments using nested segments."
+  },
+  {
+    "q": "A data architect is modeling a relationship between a custom Vehicle DMO and the standard Individual DMO. One vehicle can be owned by only one individual, but one individual can own multiple vehicles. Which cardinality should the architect select from Vehicle to Individual?",
+    "o": [
+      "One-to-Many (1:N)",
+      "One-to-One (1:1)",
+      "Many-to-Many (N:N)",
+      "Many-to-One (N:1)"
+    ],
+    "a": "Many-to-One (N:1)"
+  },
+  {
+    "q": "Both systems use the same customer identifier. Which feature should ensure engagement records are accurately associated with the correct source profile?",
+    "o": [
+      "Identity Resolution Match Rules",
+      "Identity Resolution Reconciliation Rules",
+      "Profile Unification Rules",
+      "Fully Qualified Keys"
+    ],
+    "a": "Fully Qualified Keys"
+  },
+  {
+    "q": "What does the Source Sequence reconciliation rule do in Identity Resolution?",
+    "o": [
+      "Includes data from sources where data is most frequently occurring.",
+      "Sets priority of specific data sources when building attributes in unified profile.",
+      "Identifies which individual records should be merged by setting priority for specific data sources.",
+      "Identifies which data sources should be used by prioritizing the most recently updated data source."
+    ],
+    "a": "Sets priority of specific data sources when building attributes in unified profile."
+  },
+  {
+    "q": "A retail company has customer data scattered across CRM, ecommerce, and support platforms. Which Data 360 feature should they implement first?",
+    "o": [
+      "Delivering personalized offers across channels.",
+      "Automating proactive service actions using IoT.",
+      "Unifying fragmented customer and business data into a single, comprehensive view.",
+      "Creating real-time AI-driven recommendations."
+    ],
+    "a": "Unifying fragmented customer and business data into a single, comprehensive view."
+  },
+  {
+    "q": "A Data 360 Consultant is setting up a data stream with transactional data. Which field type should preserve leading zeros in the purchase order number?",
+    "o": [
+      "Serial",
+      "Decimal",
+      "Number",
+      "Text"
+    ],
+    "a": "Text"
+  },
+  {
+    "q": "Which feature should the consultant recommend for matching and reconciling data about individuals into a single unified profile?",
+    "o": [
+      "Harmonization",
+      "Identity Resolution",
+      "Data Consolidation",
+      "Data Cleansing"
+    ],
+    "a": "Identity Resolution"
+  },
+  {
+    "q": "What is a reason to create a formula when ingesting a data stream?",
+    "o": [
+      "To add a unique external identifier to an existing ruleset.",
+      "To transform a datetime field into a date field for use in data mapping.",
+      "To remove duplicate rows of data.",
+      "To concatenate files so they are ingested in the sequence."
+    ],
+    "a": "To concatenate files so they are ingested in the sequence."
+  },
+  {
+    "q": "An organization wants to give users the ability to identify and select text attributes from a picklist of options. Which Data 360 feature should help?",
+    "o": [
+      "Transformation formulas",
+      "Global picklists",
+      "Value suggestion",
+      "Data harmonization"
+    ],
+    "a": "Value suggestion"
+  },
+  {
+    "q": "Various schemas refer to a person by multiple names (user, contact, subscriber) and need standard mapping. Which term describes this process?",
+    "o": [
+      "Segment",
+      "Transform",
+      "Harmonize",
+      "Unify"
+    ],
+    "a": "Harmonize"
+  },
+  {
+    "q": "Consultant cannot see Data 360 Setup menu or data space config in a Developer Pro sandbox refreshed before licenses were purchased. How to resolve?",
+    "o": [
+      "Manually create Data 360 Admin permission set in sandbox.",
+      "Navigate to Company Information and select Match Production Licenses.",
+      "Refresh the sandbox immediately.",
+      "Update Contract Management settings to toggle Data 360 Features."
+    ],
+    "a": "Navigate to Company Information and select Match Production Licenses."
+  },
+  {
+    "q": "Identity Resolution is matching individuals who share email or phone but are not the same person. What should consultant do?",
+    "o": [
+      "Create new ruleset with fewer matching rules, compare, then migrate.",
+      "Modify existing ruleset with stricter criteria, run, adjust.",
+      "Modify existing ruleset to use fewer matching rules.",
+      "Create new ruleset with stricter matching criteria, compare, then migrate."
+    ],
+    "a": "Create new ruleset with stricter matching criteria, compare, then migrate."
+  },
+  {
+    "q": "Which feature should the consultant configure to resolve duplicate customer records from web, mobile app, and POS to recognize same individual?",
+    "o": [
+      "Partitioning strategies",
+      "Streaming insights",
+      "Data transform logic",
+      "Matching rules within Identity Resolution settings"
+    ],
+    "a": "Matching rules within Identity Resolution settings"
+  },
+  {
+    "q": "Which statement is true regarding data security in Data 360 Clean Rooms?",
+    "o": [
+      "PII is automatically decrypted for the consumer.",
+      "Both parties must move data into a shared Amazon S3 bucket.",
+      "Provider must grant Modify All Data permissions to consumer.",
+      "Data stays in its original location, only query results are shared."
+    ],
+    "a": "Data stays in its original location, only query results are shared."
+  },
+  {
+    "q": "Which approach should provide real-time, multidimensional analytics for derived insight \"Net Profit\" within Tableau Next?",
+    "o": [
+      "Define a real-time data graph.",
+      "Create a calculated insight using SQL.",
+      "Configure a streaming transform.",
+      "Create a calculated field in the semantic layer."
+    ],
+    "a": "Define a real-time data graph."
+  },
+  {
+    "q": "After a predictive model is activated in Data 360, where are resulting scores typically stored for segmentation?",
+    "o": [
+      "Directly within the source system only.",
+      "Within Audit Trail logs.",
+      "As an attribute on a related data model object (DMO).",
+      "In a temporary CSV file."
+    ],
+    "a": "As an attribute on a related data model object (DMO)."
+  },
+  {
+    "q": "Which feature should a consultant consider to allow service reps to view all cases associated with a Unified Individual on a contact record?",
+    "o": [
+      "Related List Enrichment",
+      "Segment Activation",
+      "Data Action",
+      "Copy Field Enrichment"
+    ],
+    "a": "Related List Enrichment"
+  },
+  {
+    "q": "What is the standard method to apply Einstein Studio predictions to a business process within Salesforce?",
+    "o": [
+      "Embed Einstein Studio URL into a Lightning component.",
+      "Use Identity Resolution to merge predictions with Individual records.",
+      "Use the predict jobs feature or call the model via Flow Builder.",
+      "Manually export CSV and re-import."
+    ],
+    "a": "Use the predict jobs feature or call the model via Flow Builder."
+  },
+  {
+    "q": "What step must be completed before setting up a related list to display external engagement records on Contact record page?",
+    "o": [
+      "Establish a relationship between Individual DMO and Engagement DMO.",
+      "Ingest data stream as a streaming connector.",
+      "Include external engagement data in a calculated insight.",
+      "Enable engagement data for segmentation."
+    ],
+    "a": "Establish a relationship between Individual DMO and Engagement DMO."
+  },
+  {
+    "q": "Which standard permission set grants ability to view and create segments and activations, but not modify data model mappings or identity resolution rules (least privilege)?",
+    "o": [
+      "Data 360 Activation Manager",
+      "Data 360 Activation Specialist",
+      "Data 360 User",
+      "Data 360 Architect"
+    ],
+    "a": "Data 360 Activation Specialist"
+  },
+  {
+    "q": "Which data can the consultant examine in Data Explorer?",
+    "o": [
+      "Data lake objects, data model objects, calculated insights",
+      "Data source objects, data lake objects, data model objects",
+      "Activations, data lake objects, calculated insights",
+      "Segments, data model objects, calculated insights"
+    ],
+    "a": "Data lake objects, data model objects, calculated insights"
+  },
+  {
+    "q": "How to ensure records from legacy billing and CRM (different internal IDs but same Customer_Tax_ID) can be matched in identity resolution ruleset?",
+    "o": [
+      "Create reconciliation rule giving CRM higher priority.",
+      "Map both billing ID and CRM ID to Individual Primary Key.",
+      "Map Customer_Tax_ID from both systems to Party Identification object with consistent Identification Name.",
+      "Configure fuzzy match rule on Individual object using Customer_Tax_ID."
+    ],
+    "a": "Map Customer_Tax_ID from both systems to Party Identification object with consistent Identification Name."
+  },
+  {
+    "q": "Organization wants to demonstrate quick wins for broader adoption. Which business outcome should they prioritize?",
+    "o": [
+      "Building predictive platform to update dynamic segments every 30 seconds.",
+      "Implementing global data lineage for compliance.",
+      "Consolidating all partner and supply chain data.",
+      "Improving customer service resolution times by giving support agents a 360-degree view."
+    ],
+    "a": "Improving customer service resolution times by giving support agents a 360-degree view."
+  },
+  {
+    "q": "Where should consultant apply filtering to exclude specific contact points from Unified Individuals that qualify for a segment?",
+    "o": [
+      "Apply when creating an activation",
+      "Apply leveraging a calculated insight",
+      "Apply during creation of the segment",
+      "Apply on data ingestion"
+    ],
+    "a": "Apply during creation of the segment"
+  },
+  {
+    "q": "What should consultant consider before enabling value suggestions for an attribute with 5,000 distinct values?",
+    "o": [
+      "Suggested values fail to load if >500 unique entries.",
+      "Value suggestions only for Engagement category.",
+      "System requires custom streaming data transform for high-cardinality attributes.",
+      "Feature only displays first 1,000 distinct values, leading to incomplete results."
+    ],
+    "a": "Feature only displays first 1,000 distinct values, leading to incomplete results."
+  },
+  {
+    "q": "What are the available options for segmentation criteria?",
+    "o": [
+      "Only direct attributes and calculated insights",
+      "Direct attributes, related attributes, and calculated insights",
+      "Only direct attributes and related attributes",
+      "Direct attributes, related attributes, calculated insights, and streaming insights"
+    ],
+    "a": "Direct attributes, related attributes, and calculated insights"
+  },
+  {
+    "q": "Which ethic should the consultant adhere to regarding customer data?",
+    "o": [
+      "Collect and use all data for personalization.",
+      "Map sensitive data to same DMO for ease of deletion.",
+      "Carefully consider asking for sensitive data such as age, gender, ethnicity.",
+      "Give senior leaders access for audit purposes."
+    ],
+    "a": "Carefully consider asking for sensitive data such as age, gender, ethnicity."
+  },
+  {
+    "q": "What is the role of the manifest file when setting up file federation for a data lake on Azure Blob Storage?",
+    "o": [
+      "Reduces file size before Data 360 reads it.",
+      "Defines metadata and paths to identify specific files and track updates.",
+      "Provides PGP public key to decrypt federated data files.",
+      "Manually maps source fields to Cloud Information Model."
+    ],
+    "a": "Defines metadata and paths to identify specific files and track updates."
+  },
+  {
+    "q": "How does Data 360 primarily help Northern Trail Outfitters solve fragmented customer data?",
+    "o": [
+      "Archives historical transaction records for 10 years.",
+      "Creates automated weekly BI dashboards.",
+      "Provides data security layer for GDPR compliance.",
+      "Unifies data into a single profile to provide personalized experiences across all touch points."
+    ],
+    "a": "Unifies data into a single profile to provide personalized experiences across all touch points."
+  },
+  {
+    "q": "Which statement about Data 360's Web and Mobile Application Connector is true?",
+    "o": [
+      "Tenant Specific Endpoint is auto-generated when setting the connector.",
+      "Connector schema can be updated to delete an existing field.",
+      "Data streams associated are automatically deleted upon deleting the app.",
+      "A standard schema containing event, profile, and transaction data is created at configuration."
+    ],
+    "a": "Tenant Specific Endpoint is auto-generated when setting the connector."
+  },
+  {
+    "q": "Most efficient way to build segment: \"High Value Customers\" = Platinum Loyalty OR spent >$5,000?",
+    "o": [
+      "Create two separate segments and join in Tableau.",
+      "Create waterfall segment prioritizing Platinum then High Spender.",
+      "Use nested segment for Platinum and add separate container for min spend with OR operator.",
+      "Build calculated insight that joins both conditions and use as only filter."
+    ],
+    "a": "Use nested segment for Platinum and add separate container for min spend with OR operator."
+  },
+  {
+    "q": "Which statement best describes how zero-copy data federation differs from traditional data ingestion?",
+    "o": [
+      "Data federation reads data directly from external provider without moving or copying.",
+      "Data federation copies all data every 15 minutes.",
+      "Data federation only supports other Salesforce orgs.",
+      "Data federation requires CSV conversion."
+    ],
+    "a": "Data federation reads data directly from external provider without moving or copying."
+  },
+  {
+    "q": "Which component type should architect select when adding data streams and identity resolution rules to an outbound change set?",
+    "o": [
       "Identity Resolution Ruleset",
-      "Query API"
+      "Data 360 Metadata Definition",
+      "Data Stream Configuration",
+      "Data Package Kit Definition"
     ],
-    "a": "Profile Explorer, Query API"
+    "a": "Data 360 Metadata Definition"
   },
   {
-    "q": "During a privacy compliance review, a healthcare client explains they must fulfill patient \"right to be forgotten\" requests under new regulations. Which two facts should the consultant communicate to the client about how the Data Rights Subject Request tool works?",
+    "q": "Which federation approach to optimize performance and cost for analytical queries against external Redshift table (several times per hour, no real-time needs)?",
     "o": [
-      "Deletion requests are automatically resubmitted at 30, 60, and 90-day intervals",
-      "Deletion requests submitted in Data Cloud automatically propagate to all connected Salesforce systems",
-      "Deletion requests must be submitted against Individual profiles in Data Cloud",
-      "Deletion requests are processed and completed within one hour of submission"
+      "Configure cached acceleration to store and refresh external data.",
+      "Ingest external data as standard object.",
+      "Implement file federation exclusively.",
+      "Use live query federation."
     ],
-    "a": "Deletion requests are automatically resubmitted at 30, 60, and 90-day intervals, Deletion requests must be submitted against Individual profiles in Data Cloud"
+    "a": "Configure cached acceleration to store and refresh external data."
   },
   {
-    "q": "During identity resolution at a retail chain, customer records from the e-commerce platform show \"Robert\" as first name, while in-store POS records show \"Bob\" for what appears to be the same customer. How does Data Cloud determine which values appear in the unified profile when conflicts like these arise?",
+    "q": "Which feature to identify candidates who browsed jobs page at least twice within last 30 minutes, automatically available for segmentation and added to recruiting system?",
     "o": [
-      "Reconciliation rules evaluate configured priorities to select winning values",
-      "Match rules automatically identify which values are most accurate",
-      "The system creates multiple profiles to preserve all conflicting values",
-      "Data Cloud flags conflicts for manual resolution by an administrator"
+      "Streaming data transform",
+      "Batch data transform",
+      "Calculated insight",
+      "Streaming insight"
     ],
-    "a": "Reconciliation rules evaluate configured priorities to select winning values"
+    "a": "Streaming insight"
   },
   {
-    "q": "A client mentions they have customer data spread across their e-commerce platform, loyalty system, and email marketing tool. They need to combine this data to see each customer as a single entity. Which Data Cloud capability addresses this?",
+    "q": "Which native model type in Einstein Studio predicts total dollar amount a profile will spend over next 12 months (continuous value)?",
     "o": [
-      "Data Transformation",
-      "Profile Unification",
-      "Data Visualization",
-      "Campaign Orchestration"
+      "Binary model",
+      "Multiclass model",
+      "Regression model",
+      "Foundational model"
     ],
-    "a": "Profile Unification"
+    "a": "Regression model"
   },
   {
-    "q": "When configuring an SFTP data stream for daily CSV files (pattern: online_orders_YYYYMMDD.csv), which two settings should the consultant apply?",
+    "q": "Which feature ensures each customer assigned to only one segment to avoid overlapping promotions (strict priority hierarchy)?",
     "o": [
-      "Set the refresh mode to \"Upsert\" to add new orders and update existing ones",
-      "Set the refresh mode to \"Full Refresh\" to replace all data daily",
-      "Configure the filename pattern with a wildcard like \"online_orders_*.csv\"",
-      "Enable the \"Delete source files after ingestion\" option"
+      "Sequential Segment Membership",
+      "Waterfall Segmentation",
+      "Exclusion Rules",
+      "Nested Segment Logic"
     ],
-    "a": "Set the refresh mode to \"Upsert\" to add new orders and update existing ones, Configure the filename pattern with a wildcard like \"online_orders_*.csv\""
+    "a": "Waterfall Segmentation"
   },
   {
-    "q": "Which Data Cloud component enables historical analysis of which businesses have been included in specific segments over the past five years?",
+    "q": "Marketer cannot access Insurance_Policy_c DMO in Segment Builder on Individual object after ingestion. Most likely reason?",
     "o": [
-      "Segment Hierarchy",
-      "Segment Membership Data Model Object",
-      "Calculated Insight Repository",
-      "Segment Exclusion History"
+      "No relationship defined between Insurance_Policy_c and Individual DMO.",
+      "Fields have not had value suggestions enabled.",
+      "Insurance_Policy_c DMO was not enabled for segmentation.",
+      "Relationship configured as Many-to-One instead of One-to-Many."
     ],
-    "a": "Segment Membership Data Model Object"
+    "a": "Insurance_Policy_c DMO was not enabled for segmentation."
   },
   {
-    "q": "What is the proper sequence to ensure the most recent inventory data is accurately reflected in a calculated insight for perishable items?",
+    "q": "Which modeling approach to capture Sustainability Packaging Fee (not in standard model) with transaction data mapped to Sales Order DMO?",
     "o": [
-      "Execute inventory data stream refresh -> Process identity resolution -> Generate calculated insight",
-      "Run identity resolution first -> Refresh inventory data stream -> Generate calculated insight",
-      "Generate calculated insight first -> Refresh inventory data stream -> Process identity resolution",
-      "Refresh inventory data stream -> Generate calculated insight -> Process identity resolution"
+      "Map standard fields to Sales Order DMO and add a custom attribute for the fee.",
+      "Use Sales Order DMO and map fee to Order Description field.",
+      "Map all fields to a new Custom DMO.",
+      "Create calculated model using streaming data transform."
     ],
-    "a": "Execute inventory data stream refresh -> Process identity resolution -> Generate calculated insight"
+    "a": "Map standard fields to Sales Order DMO and add a custom attribute for the fee."
   },
   {
-    "q": "What step must the consultant take before raw Data Lake Objects (DLOs) from three different sources can be used in a data graph?",
+    "q": "What should consultant do to ensure ecommerce data is ready for scheduled activations that depend on calculated insights from nightly file?",
     "o": [
-      "Transform the DLOs through batch processing to create new DLOs optimized for the graph",
-      "Configure data actions to populate the data graph with the raw DLO data",
-      "Directly reference the DLOs when building the data graph structure",
-      "Map the DLOs to Data Model Objects (DMOs) and include those DMOs in the data graph"
+      "Use Flow to trigger change data event to refresh calculated insights and segments before activations run.",
+      "Set refresh schedule for calculated insights every hour.",
+      "Ensure segments set to Rapid Publish and refresh every hour.",
+      "Ensure activations set to Incremental Activation and auto-publish hourly."
     ],
-    "a": "Map the DLOs to Data Model Objects (DMOs) and include those DMOs in the data graph"
+    "a": "Use Flow to trigger change data event to refresh calculated insights and segments before activations run."
   },
   {
-    "q": "In identity resolution configuration, what is the purpose of the \"Skip Null Values\" setting?",
+    "q": "What is required when creating a calculated insight?",
     "o": [
-      "Exclude records with missing fields from the matching process",
-      "Prevent empty fields from overwriting populated values during reconciliation",
-      "Remove incomplete profiles from the identity resolution ruleset",
-      "Ignore fields with null values when calculating match confidence"
+      "A SUM function",
+      "Joining on two or more DMOs",
+      "A WHERE clause",
+      "At least one measure and one dimension"
     ],
-    "a": "Prevent empty fields from overwriting populated values during reconciliation"
+    "a": "At least one measure and one dimension"
   },
   {
-    "q": "A marketing coordinator requires a CSV file of a specific segment for an external vendor. How should the Data Cloud consultant provide this list?",
+    "q": "Consultant ingests a field from Contact object with mixed date and datetime values, target field datatype is Date. Which statement is true?",
     "o": [
-      "Create the segment in Data Cloud, then use the \"Download\" button to export the full guest list",
-      "Configure a file storage activation target, build the guest segment, and activate it to that target",
-      "Build the segment and activate it directly to the marketing coordinator's email inbox",
-      "Create the segment and sync it to Salesforce CRM, then export the list using Data Export"
+      "Target field will only hold date part and ignore time part.",
+      "Target field will only hold time part and ignore date part.",
+      "Target field will hold both types.",
+      "Target field will throw error and store null."
     ],
-    "a": "Configure a file storage activation target, build the guest segment, and activate it to that target"
+    "a": "Target field will only hold date part and ignore time part."
   },
   {
-    "q": "What is the correct sequence of steps to make a calculated metric (e.g., average purchase value) available for segmentation?",
+    "q": "Consultant cannot find required DMO when creating query in Data Explorer because they selected wrong data space. What should they do?",
     "o": [
-      "Import customer data -> Build the average purchase value calculation -> Map data to standard objects -> Create VIP segment",
-      "Import customer data -> Map data to standard objects -> Build the average purchase value calculation -> Create VIP segment",
-      "Build the average purchase value calculation -> Map data to standard objects -> Import customer data -> Create VIP segment",
-      "Build the average purchase value calculation -> Import customer data -> Map data to standard objects -> Create VIP segment"
+      "Add the DMO to the data space they selected.",
+      "Create a new workspace and select the data space.",
+      "Reference data space name and DMO in query within existing workspace.",
+      "Add the data space to existing workspace."
     ],
-    "a": "Import customer data -> Map data to standard objects -> Build the average purchase value calculation -> Create VIP segment"
+    "a": "Create a new workspace and select the data space."
   },
   {
-    "q": "Which statement accurately describes how Data Cloud handles phone number ingestion?",
+    "q": "Family members share addresses/phones but have distinct preferences. Which Identity Resolution strategy avoids blending family profiles?",
     "o": [
-      "All phone numbers must be formatted as 10-digit strings without special characters.",
-      "Phone numbers can be used as unique identifiers for patient matching.",
-      "Text values containing phone numbers can be ingested into phone data type fields regardless of format",
-      "Data Cloud validates and rejects any phone number that doesn't match a standard international format."
+      "Use multiple contact points without individual attributes.",
+      "Configure single match rule based on phone number.",
+      "Include match rule that incorporates match on individual and contact point attributes.",
+      "Configure single match rule with single connected contact point based on address."
     ],
-    "a": "Text values containing phone numbers can be ingested into phone data type fields regardless of format"
+    "a": "Include match rule that incorporates match on individual and contact point attributes."
   },
   {
-    "q": "A consultant observes that some transactions occurring 4 hours before a 6-hourly activation fail to trigger alerts. Which two areas should be examined to diagnose this?",
+    "q": "User cannot find specific related attributes when creating activation from a segment. Why?",
     "o": [
-      "Evaluate the sequence of segment refresh relative to calculated insight recalculation",
-      "Confirm that calculated insights are refreshing after segment evaluation completes",
-      "Verify that calculated insights are recalculated before segment refreshes execute",
-      "Ensure data transformations are running after calculated insights are generated"
+      "Attributes are being used in another activation.",
+      "Activations can only include 1-to-1 attributes.",
+      "Desired attributes reside on different related paths.",
+      "Segment is not segmenting on profile data."
     ],
-    "a": "Evaluate the sequence of segment refresh relative to calculated insight recalculation, Verify that calculated insights are recalculated before segment refreshes execute"
+    "a": "Desired attributes reside on different related paths."
   },
   {
-    "q": "Premier Bank wants to instantly trigger a personalized video message when a Gold tier client views wealth management more than twice in 12 hours. Which solution meets this real-time requirement?",
+    "q": "Which capability to trigger high-priority Service Recovery flow immediately after negative sentiment event from streaming source?",
     "o": [
-      "Batch calculation of customer behavior with automated email campaign enrollment",
-      "Real-time event monitoring connected to a Marketing Cloud journey trigger",
-      "Daily segment refresh with activation to Marketing Cloud for next-day messaging",
-      "Rapid audience update with integration to Marketing Cloud for hourly processing"
+      "Standard data actions via scheduled batch transforms",
+      "Manual activation to Salesforce CRM target",
+      "Calculated insights via real-time segment refresh",
+      "Real-time data actions via automation event-triggered flow"
     ],
-    "a": "Real-time event monitoring connected to a Marketing Cloud journey trigger"
+    "a": "Real-time data actions via automation event-triggered flow"
   },
   {
-    "q": "What is the most efficient approach to make multiple phone numbers (primary, secondary, emergency) from a single patient record available as Contact Point Phone records?",
+    "q": "What is impact of sandbox refresh on existing Data 360 configuration within that sandbox?",
     "o": [
-      "Import the patient record and build a calculated insight to extract and normalize phone numbers",
-      "Import the patient record and implement streaming transformations to generate a separate DLO with one row per phone number, then map to Contact Point Phone",
-      "Import the patient record and add formula fields for each phone number type, then map directly to Contact Point Phone",
-      "Import the patient record and have administrative staff manually create Contact Point Phone records"
+      "Only identity resolution rules deleted; data streams remain active.",
+      "Data 360 instance deleted and new blank instance must be provisioned.",
+      "Sandbox maintains connection to existing Data 360 instance, but all data mapping reverted to Draft.",
+      "All Data 360 metadata replicated from current production, ingested records cleared and must be re-ingested."
     ],
-    "a": "Import the patient record and implement streaming transformations to generate a separate DLO with one row per phone number, then map to Contact Point Phone"
+    "a": "All Data 360 metadata replicated from current production, ingested records cleared and must be re-ingested."
   },
   {
-    "q": "A marketing team wants to personalize an email with a member's current credit card type and credit limit. How should the activation be configured?",
+    "q": "First step to set up zero-copy data federation connection with Snowflake in Data 360?",
     "o": [
-      "Include Credit Card Type and Credit Limit as related attributes, and add a filter for Credit Card Type = \"Premium Eligible\"",
-      "Select the Multi-Product Members segment and the Email contact point without additional attributes",
-      "Select the Multi-Product Members segment, choose the Email contact point, and add Credit Card Type as a related attribute",
-      "Create a separate segment for each credit card type and activate them individually"
+      "Map external data directly to Unified Individual DMO.",
+      "Run identity resolution matching rule.",
+      "Create data stream using Bulk API category with provider credentials.",
+      "Establish a connection in Data 360 Setup using provider's credentials."
     ],
-    "a": "Include Credit Card Type and Credit Limit as related attributes, and add a filter for Credit Card Type = \"Premium Eligible\""
+    "a": "Establish a connection in Data 360 Setup using provider's credentials."
   },
   {
-    "q": "Which combination of Data Cloud features enables targeting members with a $25,000 balance across accounts, a loan product, and 5+ years of membership?",
+    "q": "How to modify attribute names to match naming convention in Cloud File Storage targets?",
     "o": [
-      "Streaming Insight and Activation Target",
-      "Calculated Insight and Segment",
-      "Streaming Insight and Segment",
-      "Calculated Insight and Data Action"
+      "Set preferred attribute names when configuring activation.",
+      "Update attribute names in data stream configuration.",
+      "Use formula field to update field name in an activation.",
+      "Update field names in data model object."
     ],
-    "a": "Calculated Insight and Segment"
+    "a": "Set preferred attribute names when configuring activation."
   },
   {
-    "q": "The marketing team observes that the number of records in Marketing Cloud is 15-20% lower than the segment count in Data Cloud. What is the most likely cause?",
+    "q": "Which consideration should consultant inform customer about Consent API for Right to Be Forgotten?",
     "o": [
-      "Marketing Cloud activations exclude individuals who have unsubscribed from all communications",
-      "Data Cloud only activates individuals who have a valid email address mapped to Contact Point Email",
-      "Marketing Cloud automatically caps the number of records that can be activated in a single batch",
-      "Data Cloud excludes individuals who haven't engaged with previous email campaigns"
+      "Data Deletion automatically happens for related records.",
+      "Data Deletion requests are submitted for Individual profiles.",
+      "Data Deletion requests are processed within 1 hour.",
+      "Data Deletion requests submitted to Data 360 are passed to all connected Salesforce clouds."
     ],
-    "a": "Data Cloud only activates individuals who have a valid email address mapped to Contact Point Email"
+    "a": "Data Deletion requests are submitted for Individual profiles."
   },
   {
-    "q": "When a customer exercises their \"right to be forgotten\", what data is removed from Data Cloud?",
+    "q": "Which action to accommodate customer personal data deletion request in Data 360?",
     "o": [
-      "Only the unified individual record, leaving source data intact",
-      "The Individual record and all associated data across all DMOs and DLOs",
-      "Source system records through connected APIs",
-      "Only contact point information, preserving transaction history"
+      "Use Consent API to request deletion.",
+      "Use Profile Explorer to delete data.",
+      "Use streaming API call to delete from data lake object.",
+      "Use Governance API call."
     ],
-    "a": "The Individual record and all associated data across all DMOs and DLOs"
+    "a": "Use Consent API to request deletion."
   },
   {
-    "q": "When activating a segment to Amazon S3, which file in the export contains the descriptive information like field definitions and data types?",
+    "q": "What should consultant use to suppress customers who have made purchases within the last week from a promotional segment?",
     "o": [
-      "The metadata file",
-      "The readme file",
-      "The archive file",
-      "The data file"
+      "Streaming insights",
+      "Segmentation exclude rules",
+      "Batch transforms",
+      "Related attributes"
     ],
-    "a": "The metadata file"
+    "a": "Segmentation exclude rules"
   },
   {
-    "q": "When creating a calculated insight using the Visual Insights Builder, which two components are mandatory?",
+    "q": "After activating segment of customers who placed orders in last 30 days, some older orders are included. How to resolve?",
     "o": [
-      "A filter condition to limit data scope",
-      "A calculated field to aggregate values",
-      "A grouping field to categorize results",
-      "A join between multiple data objects"
+      "Apply 30-day date filter on Sales Order DMO within activation.",
+      "Build segment using Sales Order DMO and filter orders to last 30 days.",
+      "Filter out older orders in Marketing Cloud after activation.",
+      "Apply data space filter."
     ],
-    "a": "A calculated field to aggregate values, A grouping field to categorize results"
+    "a": "Build segment using Sales Order DMO and filter orders to last 30 days."
   },
   {
-    "q": "What ethical consideration should guide decisions about collecting patient data in Data Cloud?",
+    "q": "Which method to perform aggregations in 15-minute windows on data from Interactions SDK or Mobile SDK?",
     "o": [
-      "Collect all available data for maximum analytical potential",
-      "Provide executive leadership with unrestricted data access",
-      "Only request sensitive attributes with clear justification",
-      "Store sensitive data in easily accessible locations"
+      "Streaming insight",
+      "Calculated insight",
+      "Batch transform",
+      "Formula fields"
     ],
-    "a": "Only request sensitive attributes with clear justification"
+    "a": "Streaming insight"
+  },
+  {
+    "q": "Which tool to execute manual SQL query to verify join keys between Unified Individual and custom Loyalty Ledger DMO?",
+    "o": [
+      "Data 360 Data Explorer",
+      "Data 360 Metadata Search",
+      "Data 360 Query Editor",
+      "Data 360 Calculated Insights Builder"
+    ],
+    "a": "Data 360 Data Explorer"
+  },
+  {
+    "q": "What is the purpose of a secondary index in Data 360?",
+    "o": [
+      "transform data type",
+      "compress storage",
+      "enable efficient querying on non-primary key attributes",
+      "increase write speed"
+    ],
+    "a": "enable efficient querying on non-primary key attributes"
+  },
+  {
+    "q": "How to use externally trained ML model (Amazon SageMaker) inference inside Data 360 without duplicating data?",
+    "o": [
+      "Consume predictions as a data lake object (DLO).",
+      "Use out-of-the-box Einstein Studio churn model.",
+      "Use built-in Calculated Insights.",
+      "Connect trained model in Data 360 via Bring Your Own Model (BYOM)."
+    ],
+    "a": "Connect trained model in Data 360 via Bring Your Own Model (BYOM)."
+  },
+  {
+    "q": "Which tool should marketer use to segment customers based on Lifetime Loyalty Points (summing point-based transactions from data lake and Commerce Cloud)?",
+    "o": [
+      "Streaming Transform",
+      "Batch Transform",
+      "Secondary Index",
+      "Calculated Insight"
+    ],
+    "a": "Calculated Insight"
+  },
+  {
+    "q": "Which scenario represents the most appropriate initial use case based on Salesforce implementation best practices?",
+    "o": [
+      "Consolidating three systems (Sales, Service, and Marketing Cloud) to provide a \"Single View of the Customer\" for high-tier support agents",
+      "Implementing a complex, sub-second web personalization engine using 15 disparate third-party data streams with varying schemas",
+      "Redefining the global identity resolution rules for 1 billion records across 12 global regions simultaneously without a specific departmental pilot",
+      "Moving 20 years of legacy transaction data into Data 360 to reduce storage costs in their primary CRM org"
+    ],
+    "a": "Consolidating three systems (Sales, Service, and Marketing Cloud) to provide a \"Single View of the Customer\" for high-tier support agents"
+  },
+  {
+    "q": "Which statement best describes how data federation differs from traditional data ingestion in Data 360?",
+    "o": [
+      "Data federation allows Data 360 to read data directly from an external provider without moving or copying the data.",
+      "Data federation requires data to be converted into CSV format before it can be accessed.",
+      "Data federation only supports data coming from other Salesforce orgs.",
+      "Data federation copies all data into Data 360 storage every 15 minutes."
+    ],
+    "a": "Data federation allows Data 360 to read data directly from an external provider without moving or copying the data."
+  },
+  {
+    "q": "A developer at Cloud Kicks is integrating customer data from a legacy shoe-inventory system and a web-store platform into Data 360. They need a way to ensure the Customer Name field from both systems is recognized as the same attribute. Which component should the developer use to provide this standardized structure?",
+    "o": [
+      "An identity resolution ruleset to merge duplicate records",
+      "A segmentation canvas for selecting desired customer attributes",
+      "An encryption key to secure PII during the data transfer",
+      "A data model object (DMO) to map and relate the data fields"
+    ],
+    "a": "A data model object (DMO) to map and relate the data fields"
+  },
+  {
+    "q": "A global ecommerce company uses Salesforce Data 360 to unify customer profiles across multiple systems. The business wants to securely leverage unified customer data across Snowflake to support analytics and downstream use cases. Requirements: read-only, near real-time updates, minimize complexity and data duplication. Which approach should the Data 360 Consultant recommend?",
+    "o": [
+      "Schedule nightly exports of Data 360 data to cloud storage and load into Snowflake.",
+      "Use Data 360 Data Sharing to share unified customer data directly to Snowflake.",
+      "Expose Data 360 data through REST APIs and ingest into Snowflake using streaming ingestion.",
+      "Replicate Data 360 data into Salesforce standard objects and sync those objects to Snowflake using ETL."
+    ],
+    "a": "Use Data 360 Data Sharing to share unified customer data directly to Snowflake."
+  },
+  {
+    "q": "A global beverage company (data provider) and a sports media network (data consumer) are collaborating in a Data 360 clean room to identify high-value partnership opportunities. When configuring the segment overlap template, which requirement must be met to allow results to be filtered by specific demographics like \"Region\" or \"Age Group\" in the final output?",
+    "o": [
+      "The Data 360 Consultant must configure a many-to-many relationship between the two search index DMOs.",
+      "The Region and Age Group fields must be set as foreign keys in the DMOs of both organizations.",
+      "Both parties must map their \"Region\" and \"Age Group\" data to a shared calculated insight before joining.",
+      "The data provider must include these additional fields as segmentation attributes within the use case template configuration."
+    ],
+    "a": "The data provider must include these additional fields as segmentation attributes within the use case template configuration."
+  },
+  {
+    "q": "A solution architect needs to create a segment of \"High Value Customers\". They define this as anyone who qualifies for the existing Platinum Loyalty segment OR anyone who has spent more than US$5,000. What is the most efficient way to build this?",
+    "o": [
+      "Use a nested segment for \"Platinum Loyalty\" and add a separate container for the minimum spend with an OR operator.",
+      "Build a calculated insight that joins both conditions and use that as the only filter in a new segment.",
+      "Create a waterfall segment, prioritizing the \"Platinum Loyalty\" group first and the \"High Spender\" group second.",
+      "Create two separate segments and join them together in a Tableau dashboard for activation."
+    ],
+    "a": "Use a nested segment for \"Platinum Loyalty\" and add a separate container for the minimum spend with an OR operator."
+  },
+  {
+    "q": "A Data 360 Consultant is configuring a zero-copy architecture where an external Snowflake instance needs to access Data 360 data without the latency of traditional ETL processes. Which capability should the consultant use to expose Data 360 objects to the external Snowflake environment?",
+    "o": [
+      "Data 360 Data Bundles",
+      "Data 360 Webhook Subscriptions",
+      "Data 360 S3 Direct Ingress",
+      "Data 360 Data Shares"
+    ],
+    "a": "Data 360 Data Shares"
+  },
+  {
+    "q": "A customer has a custom Customer_Email c object related to the standard Contact object in Salesforce CRM. This custom object stores the email address for a Contact that they want to use for activation. To which data model object should the customer map the email object?",
+    "o": [
+      "Contact",
+      "Individual",
+      "Contact Point Email",
+      "Custom Customer_Email c object"
+    ],
+    "a": "Contact Point Email"
+  },
+  {
+    "q": "When preparing to build a predictive AI model in Einstein Studio using Data 360 data, which step is essential to ensure the model produces ethical and unbiased results?",
+    "o": [
+      "Auditing training data to identify which segments of the customer base are underrepresented",
+      "Using only unstructured data to prevent pattern recognition",
+      "Disabling all calculated insights before starting the training process",
+      "Ensuring the training dataset contains at least 10 million records"
+    ],
+    "a": "Auditing training data to identify which segments of the customer base are underrepresented"
+  },
+  {
+    "q": "A Data 360 Consultant is explaining the behavior of Data 360 sandboxes to a project stakeholder. The stakeholder wants to know what happens to the data configurations when a sandbox is refreshed. What is copied from the production org to a Data 360 sandbox during a standard refresh?",
+    "o": [
+      "Every single row of historical engagement data from the last 10 years",
+      "All customer credit card information and sensitive personal passwords",
+      "Only the metadata, such as DMO definitions and mappings",
+      "A direct and real-time connection to the production data lake for live querying"
+    ],
+    "a": "Only the metadata, such as DMO definitions and mappings"
+  },
+  {
+    "q": "A Data 360 Consultant is configuring an activation for a segment created from the Unified Individual object to be sent to a Loyalty Cloud activation target. They would like to include the Loyalty Program Tier for personalization, but this field is stored in a separate Loyalty Program Member DMO that was not used in the initial segment filters. Which feature should the consultant use during activation setup to include this external identifier in the exported payload?",
+    "o": [
+      "Activation membership to select the Loyalty Program Member DMO and its associated fields",
+      "Data stream mappings to re-map Loyalty Program Tier as a secondary key on the Individual object",
+      "Calculated insights to join the Loyalty Program Tier to the Unified Individual prior to segmentation",
+      "Contact point priority to rank the Loyalty Program Tier above the standard Individual ID"
+    ],
+    "a": "Activation membership to select the Loyalty Program Member DMO and its associated fields"
+  },
+  {
+    "q": "Northern Trail Outfitters wants to create a segment where a unique record is created in the published audience for every transaction a customer completes. If a customer makes three separate purchases, the resulting segment should contain three distinct entries for that customer. All transactions are mapped to the Sales Order DMO, and NTO is using Identity Resolution to unify customers on the Unified Individual DMO. Which configuration should a Data 360 Consultant use to meet this requirement?",
+    "o": [
+      "Segment on the Sales Order DMO",
+      "Segment on the Unified Individual DMO",
+      "Segment on the Individual DMO",
+      "Segment on a calculated insight based on Sales Orders"
+    ],
+    "a": "Segment on the Sales Order DMO"
+  },
+  {
+    "q": "A data architect is designing a solution to trigger a high-priority Service Recovery flow in a core Salesforce CRM org immediately after a negative sentiment event is ingested from a streaming web source. The architect needs to minimize latency. Which Data 360 capability should the architect use?",
+    "o": [
+      "Manual activation to a Salesforce CRM target",
+      "Calculated insights published via real-time segment refresh",
+      "Standard data actions via scheduled batch transforms",
+      "Real-time data actions via automation event-triggered flow"
+    ],
+    "a": "Real-time data actions via automation event-triggered flow"
+  },
+  {
+    "q": "A Data 360 Consultant created a calculated insight that can be seen when 'Segmenting On' Individuals on the segmentation canvas but not Unified Individual. What is the reason for this?",
+    "o": [
+      "The calculated insight is missing a relationship to the Unified Individual DMO.",
+      "The data space for Unified Individual is different than the Individual DMO.",
+      "The consultant doesn't have the permissions.",
+      "Calculated insights can't be used for the Unified Individual DMO."
+    ],
+    "a": "The consultant doesn't have the permissions."
+  },
+  {
+    "q": "A Data 360 Consultant is performing a source system inventory for Northern Trail Outfitters. During review, the consultant identifies several business-specific fields in the source system that do not have a corresponding field in standard DMOs. Following best practices for mapping preparation, which action should the consultant take?",
+    "o": [
+      "Extend the relevant standard DMOs by adding custom fields to accommodate the missing data.",
+      "Create a new custom DMO for every business-specific field identified.",
+      "Map the business-specific fields to the \"Other\" category.",
+      "Ignore the business-specific fields and map only existing fields."
+    ],
+    "a": "Extend the relevant standard DMOs by adding custom fields to accommodate the missing data."
+  },
+  {
+    "q": "A client wants to bring in loyalty data from a custom object in Salesforce CRM that contains a point balance for accrued hotel points and airline points within the same record. The client wants to split these point systems into two separate records for better tracking and processing. What should a Data 360 Consultant recommend?",
+    "o": [
+      "Create a junction object in Salesforce CRM and modify the ingestion strategy.",
+      "Use batch transforms to create a second data lake object.",
+      "Clone the data source object.",
+      "Create a data kit from the data lake object and deploy it to the same Data 360 org."
+    ],
+    "a": "Use batch transforms to create a second data lake object."
+  },
+  {
+    "q": "A customer is interested in tracking their Average Time To Close for Service Cloud cases. They are looking for a flexible solution that provides near real-time reporting and allows different teams to review the data across relevant dimensions from Sales, Service, Marketing, and Commerce Clouds. Which solution meets the customer's needs?",
+    "o": [
+      "Data Model Object (DMO) Formula Fields",
+      "Service Cloud Reports",
+      "Calculated Insights",
+      "Semantic Model Metrics"
+    ],
+    "a": "Calculated Insights"
+  },
+  {
+    "q": "What is the primary functionality of Data 360?",
+    "o": [
+      "To help users build a heat map using their data",
+      "To automatically generate sales forecasts based on historical email patterns",
+      "To create a master data management (MDM) strategy",
+      "To unify and harmonize data from multiple sources to create a complete customer profile"
+    ],
+    "a": "To unify and harmonize data from multiple sources to create a complete customer profile"
+  },
+  {
+    "q": "A Data 360 Consultant for a high-growth retail brand is configuring the ingestion of customer behavioral data from a mobile application. The brand requires that the raw, unmodified data be stored exactly as it appears in the source system before any mapping or transformations occur to maintain a historical record. Which object serves as the container of this source data in Data 360?",
+    "o": [
+      "Data Model Object",
+      "Calculated Insight Object",
+      "Data Lake Object",
+      "Party Identification Object"
+    ],
+    "a": "Data Lake Object"
+  },
+  {
+    "q": "A data science team has developed a custom propensity-to-churn model in Amazon SageMaker. The company wants to use this model to score its Unified Profiles in Data 360 and use those scores for a high-priority retention segment. The consultant needs to ensure data is not duplicated or moved out of Data 360. Which feature should the consultant use?",
+    "o": [
+      "Streaming Data Transforms",
+      "Ingestion API",
+      "Model Builder in Prompt Builder",
+      "Einstein Studio Bring Your Own Model (BYOM)"
+    ],
+    "a": "Einstein Studio Bring Your Own Model (BYOM)"
+  },
+  {
+    "q": "A global marketing team is using Salesforce Data 360 to create highly targeted segments. Many team members are new and unfamiliar with the data model and attributes, causing delays. Which configuration should the consultant implement on the DMO so that users can see and select from actual data values while building segments?",
+    "o": [
+      "Create a Data 360 Report for each DMO that counts value occurrences.",
+      "Enable Value Suggestion for text fields on DMOs.",
+      "Utilize Data Explorer or Query Editor to identify common attribute values.",
+      "Create a data kit and share a list of values across all marketing users."
+    ],
+    "a": "Enable Value Suggestion for text fields on DMOs."
+  },
+  {
+    "q": "A data architect has deployed an inbound change set containing a data kit into a new Salesforce Production org. Although deployment status shows \"Succeeded\", the specific data stream configurations and calculated insights are not yet active or visible. What is the next required action?",
+    "o": [
+      "Use Salesforce Package Manager to verify installation status.",
+      "Run a \"Full Refresh\" on all data streams within the deployed change set.",
+      "Re-upload the outbound change set from the source org.",
+      "Install the data kit from the Data 360 Setup menu to map and activate the components."
+    ],
+    "a": "Install the data kit from the Data 360 Setup menu to map and activate the components."
+  },
+  {
+    "q": "During a privacy law discussion, a customer indicates they need to honor Right to Be Forgotten requests. The consultant determines that Consent API will solve this. Which consideration should the consultant inform the customer about?",
+    "o": [
+      "Data Deletion requests are submitted for Individual profiles.",
+      "Data Deletion automatically happens for related records.",
+      "Data Deletion requests submitted to Data 360 are passed to all connected Salesforce clouds.",
+      "Data Deletion requests are processed within 1 hour."
+    ],
+    "a": "Data Deletion requests are submitted for Individual profiles."
+  },
+  {
+    "q": "A Data 360 Consultant wants to activate a segment on the Unified Individual object. Which steps are required from ingestion to activation?",
+    "o": [
+      "Data → Data Lake Object → Map to Data Model Object → Activation",
+      "Data → Data Lake Object → Map to Data Model Object → Identity Resolution & Unification → Activation",
+      "Data → Data Lake Object → Map to Data Model Object → Identity Resolution & Unification → Segmentation → Activation",
+      "Data → Data Lake Object → Identity Resolution & Unification → Segmentation → Activation"
+    ],
+    "a": "Data → Data Lake Object → Map to Data Model Object → Identity Resolution & Unification → Segmentation → Activation"
+  },
+  {
+    "q": "A customer has a requirement to receive a notification whenever an activation fails for a particular segment. Which feature should the Data 360 Consultant use?",
+    "o": [
+      "Report",
+      "Dashboard",
+      "Flow",
+      "Activation alert"
+    ],
+    "a": "Flow"
+  },
+  {
+    "q": "A Data 360 Consultant needs to provide real-time, multidimensional analytics for a derived insight \"Net Profit\" to be used within Tableau Next, with dynamic filtering. Which approach should the consultant take?",
+    "o": [
+      "Create a calculated insight using SQL.",
+      "Create a calculated field in the semantic layer.",
+      "Configure a streaming transform.",
+      "Define a real-time data graph."
+    ],
+    "a": "Define a real-time data graph."
+  },
+  {
+    "q": "Northern Trail Outfitters wants to connect its B2C Commerce data with Data 360 and bring 2 years of transactional history into Data 360. What should NTO use to achieve this?",
+    "o": [
+      "Sales Product object ingestion",
+      "B2C Commerce Starter Bundles",
+      "B2C Commerce Starter Bundles plus a custom extract",
+      "Sales Order object ingestion"
+    ],
+    "a": "B2C Commerce Starter Bundles"
   }
-],
+]
+,
         agentforce:[
   {
     "q": "A service manager wants to use Salesforce Prompt Builder to help agents summarize customer case notes after a support call. The summary should capture the customer's issue, troubleshooting steps taken, and next actions; be no longer than five sentences; use plain language; and if no next action is identified, the summary should explicitly state \"No next action required.\" Which prompt template follows Salesforce prompt design best practices?",
